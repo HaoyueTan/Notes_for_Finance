@@ -1,0 +1,830 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{thrm}
+\newtheorem{thrm}{Theorem}[section]
+\theoremstyle{lma}
+\newtheorem{lma}{Lemma}[section]
+\theoremstyle{ppst}
+\newtheorem{ppst}{Proposition}[section]
+\theoremstyle{crlr}
+\newtheorem{crlr}{Corollary}[section]
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.5}
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+\usepackage{color}  
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true
+    linktoc=all
+    linkcolor=blue
+}
+
+\usepackage{fancyheadings}
+\pagestyle{fancyplain}
+\fancypagestyle{plain}{
+\renewcommand{\headrulewidth}{0.4pt}
+}
+\lhead{\fancyplain{Haoyue(Heather) Tan}{Hthr.}}
+\rhead{\fancyplain{FIN6104}{FIN6104 Lecture note}}
+\title{FIN6104 Corporate Valuation and Fundamentals of Finance }
+\author{Heather Tan}
+\date{Fall 2021}
+\begin{document}
+
+\maketitle	
+\tableofcontents
+\pagebreak
+
+\section{Introduction}
+\subsection{What is corporate finance about}
+\textbf{Fixed assets}: what long-term investments should the firm choose - \textbf{Capital budgeting}\\
+\textbf{Long-term Debt \& Shareholders' Equity}: how should the firm raise fund for its investments - \textbf{Capital Structure}\\
+\textbf{Current assets \& Current liabilities}: net working capital, how should the short-term assets be managed and financed - \textbf{Working capital management}\\
+
+\section{Discount rate}
+\textbf{A.K.A: Interest rate, required rate of return, opportunity cost of capital} is the reward that investors demand for accepting delayed cash flows rather than immediate gratification.
+\subsection{Over one period}
+\begin{align*}
+	PV &= \frac{FV}{(1+r)}\\
+	FV &= PV \times (1+r)
+\end{align*}
+\subsection{Multiple periods - Simple interest}
+The interest earned or paid is just the original balance of the deposit times the interest rate. 
+\begin{align*}
+	X + r\times X\times T = X(1+r\times T)
+\end{align*}
+\subsection{Multiple periods - Compound interest}
+Interest must be paid on previously earned interest 
+\begin{align*}
+	X(1+r)^T
+\end{align*}
+
+\subsection{Present value}
+A current cashflow that is equivalent to a future cash flow
+\begin{align*}
+	PV = \frac{X}{(1+r)^T}
+\end{align*}
+\textbf{Discount Factor}: present value of \$1
+\begin{align*}
+	DF(r,T) &= \frac{1}{(1+r)^T}\\
+	PV(X,DF,T) &= DF\times X
+\end{align*}
+
+\subsection{Quoted interest rates ad effective interest rates}
+Interest rate usually represent \textbf{annual percentage rate(APR}, while in  calculation we usually use \textbf{Effective periodic rate(EPR), usually denoted as r}
+\begin{align*}
+	1+EAR &= (1+r)^k = (1+\frac{APR}{k})^k\\
+	EAR &= \stackrel{lim}{k\to \infty}(1+\frac{APR}{k})^k-1 = e^{APR}-1
+\end{align*}
+
+\section{Perpetuity and Annuity}
+\subsection{Perpetuity}
+An asset that promises a fixed nominal cashflow at the end of every period from now until the end of time.
+\begin{align*}
+	PV &= \sum_{i=1}^\infty \frac{C}{(1+r)^i}\\
+	\text{let } a &= \frac{1}{(1+r)}\\
+	\implies PV &= \sum_{i=1}^\infty a^iC = aC + a^2C + a^3 C +\cdots \\
+	\implies a\cdot PV &= \sum_{i=1}^\infty a^{i+1}C = a^2C + a^3C +\cdots\\
+	\implies (1-a)PV &= aC\\
+	\implies PV &= \frac{a}{1-a}C = \frac{\frac{1}{1+r}}{\frac{1+r-1}{1+r}}C = \frac{C}{r}
+\end{align*} 
+\subsubsection{Growing Perpetuity}
+\begin{align*}
+	PV &= \sum_{i=1}^\infty \frac{C(1+g)^{i-1}}{(1+r)^i}\\
+	\text{let }a &= \frac{1}{(1+r)}, b = (1-g) \\
+	\implies  PV &= \sum_{i=1}^\infty \frac{Cb^i}{a^i}\cdot\frac{1}{b} = \frac{1}{b}  \sum_{i=1}^\infty \frac{Cb^i}{a^i} = \frac{1}{b}[\frac{b}{a}C + \frac{b^2}{a^2}C + \frac{b^3}{a^3}C +\cdots]\\
+	\implies \frac{b}{a}PV &= \frac{1}{b}[ \frac{b^2}{a^2}C + \frac{b^3}{a^3}C +\cdots]\\
+	\implies (1-\frac{b}{a})PV &= \frac{1}{b}\cdot \frac{b}{a} C\\
+	\implies PV &= \frac{1/a}{(a-b)/a}C = \frac{1}{1+r-1-g}C
+\end{align*} 
+\subsection{Annuity}
+Annuities are more common cashflow streams, consisting of a fixed nominal payment once per period but only for a known, finite number of periods. \\
+The PV of an annuity equals perpetuity's PV on today minus a the PV of a perpetuity at time T. Thus similar to the PV of perpetuity
+\begin{align*}
+	PV = \sum_{i=1}^T\frac{C}{(1+r)^i}=\frac{C}{r}-\frac{C}{r}\cdot \frac{1}{(1+r)^T} = \frac{C}{r}\cdot[1- \frac{1}{(1+r)^T}]
+\end{align*}
+\subsubsection{Growing Annuity}
+\begin{align*}
+	PV = \sum_{i=1}^T\frac{C(1+g)^{i-1}}{(1+r)^i}=\frac{C}{r-g}\cdot[1- \frac{(1+g)^T}{(1+r)^T}]
+\end{align*}
+
+\section{Bond}
+\subsection{Basics}
+\subsubsection{Terminology}
+\begin{itemize}
+	\item Bonds are often called the fixed-income securities
+	\item They are so named as the cashflows they promise to deliver to investors, as well as the dates of the cashflow arrivals, tend to be known in advance
+\end{itemize}
+\subsubsection{Structure}
+\begin{itemize}
+	\item A bond is a security issued by a borrower(i.e Issuer) and purchased by a lender(i.e investor). The borrower is the seller of the bond, and the lender is the buyer of the bond.
+	\item The bond contract obligates the issuers to make pre-specified payments to the bondholder at some pre-specified future dates.
+	\item Different payment schedules will give different bond types
+	\item Upon issue, the investor is obligated to pay the issuer the bond price. 
+\end{itemize}
+Bond market is huge and fixed income markets are an important component to economic growth, providing efficient, long term and cost-effective funding. 
+
+\subsection{Zero-coupon Bonds}
+A K-year zero-coupon bond promises the investor a single payment, called the \textbf{face value} or \textbf{par value}(\$1000 for US/UK bonds, \$100 for Chinese bonds), K year from the issue date. \\
+The date of payment is called the \textbf{maturity date}, and K is called the \textbf{time to maturity}.
+
+\subsection{Coupon Bonds}
+A K-year coupon bond also promises the investor a payment of the \textbf{face value}, K years from the issue date(same as the zero-coupon bond). In addition, it promises to make periodic interest payments(i.e \textbf{coupons}).\\
+
+\subsubsection{Coupon rate}
+\textbf{Coupon rate} is the ratio of total annual coupon to the face value. \\
+\begin{itemize}
+	\item coupon rate $\times$ face value is not necessarily the periodic coupon payment; pay attention to the coupon frequency. 
+\end{itemize}
+\subsection{Yield to Maturity(YTM)}
+The YTM(often denoted as $y$) is the constant, hypothetical discount rate that when used to compute the PV of a bond's cashflows, gives you the bond's market prices as the answer. 
+\begin{align*}
+	\text{Bond price} &= \frac{coupon}{1+y} + \frac{coupon}{(1+y)^2} + \frac{coupon}{(1+y)^3} +\cdots ++ \frac{coupon}{(1+y)^n} ++ \frac{face \ value}{(1+y)^n}\\
+	&= \frac{coupon}{y}[1-\frac{1}{(1+y)^n}]+\frac{face\ value }{(1+y)^n}
+\end{align*}
+\begin{itemize}
+	\item Bond price rise $\iff$ the YTM falls
+	\item The YTM can be interpreted as the average rate of return to an investor who holds the bond until maturity.
+	\item Excel formular: =RATE(nper, pmt, pv, fv)
+\end{itemize}
+\subsection{YTM V.S Coupon Rate}
+\begin{itemize}
+	\item Coupon rate is a pre-specified feature which is pre-determined, while YTM is a market-determined rate
+	\item YTM grater than coupon rate $\iff$ bond price is less than the par value
+	\begin{itemize}
+		\item Premium bond: price $>$ par value - part of the bond price is paid for earning from coupons. 
+		\item Discount bond: price $<$ par value - the bond earns even without coupons.
+	\end{itemize}
+\end{itemize}
+\subsection{Buy Clean pay Dirty}
+\begin{itemize}
+	\item \textbf{Clean price}: the price of a coupon bond not including any accrued interest
+	\item \textbf{Dirty price}: The price including accrued interest between coupon payments. 
+\end{itemize}
+\begin{align*}
+	Dirty \ price &= clean \ price + accrued \ price = clean\ price + coupon \times (365- future\ holding \ days)/365\\
+	&= (interest + face value)/(1+YTM)^{past\ days/365}
+\end{align*}
+Accrued interest leads to bond price fluctuations that can make it difficult to analyze the impact of interest rates or credit quality. Thus, the removal of accrued interest from bond prices makes it easier for investors
+\subsection{Sensitivity of Bond prices to yields}
+\begin{itemize}
+	\item the longer term bond has greater sensitivity to changes in yields. 
+	\item As the yields rises, he value of the longer-term bond declines more quickly than the short-term bond
+\end{itemize}
+\subsubsection{Derivatives P with respect to (1+y)}
+It measures the change in price for a 1-percentage-point change in yield. 
+\begin{align*}
+	\frac{dP}{d(1+y)} = -\sum_{i=1}^T i \times \frac{C_i}{(1+y)^{i+1}} = -\frac{1}{1+y}\sum_{i=1}^T i\times \frac{C_i}{(1+y)^i}
+\end{align*}
+\subsubsection{Derivative the elasticity of P with respect to y}
+It work out the percentage change in price for a 1\% change in the yield.
+\begin{align*}
+	\frac{dP/P}{d(1+y)/(1+y)} &= \frac{1+y}{P}\frac{dP}{d(1+y)}\\
+	&= \frac{1+y}{P}\frac{-1}{1+y}\sum_{i=1}^T i\times \frac{C_i}{(1+y)^i}\\
+	&= -\frac{1}{P}\sum_{i=1}^T i\times \frac{C_i}{(1+y)^i}
+\end{align*}
+\subsubsection{Macaulay Duration}
+Macaulay Duration is the negative of the elasticity of bond prices w.r.t yield, which is $\frac{1}{P}\sum_{i=1}^T i\times \frac{C_i}{(1+y)^i}$.\\
+\begin{itemize}
+	\item It is a direct measure of interest rate sensitivity: high-duration bonds see stronger decreases(increase) in prices when yields increase(decrease)
+	\item It is computed as the \textbf{weighted time to payment} for the bond since $D = \frac{1}{P}\sum_{i=1}^T i\times \frac{C_i}{(1+y)^i} = \sum_{i=1}^T i\times \frac{C_i/(1+y)^i}{P}$ while $w_i = \frac{C_i/(1+y)^i}{P}$ s the weight of time. Thus, the duration is always between zero and the time to the final payment. 
+\end{itemize}
+\subsubsection{Modified Duration}
+Modified duration is often reported for fixed income instruments.
+\begin{align*}
+	D^M = \frac{D}{1+y} = \frac{dP/P}{d(1+y)}
+\end{align*}
+It measures the percentage changes in the bond price for a 1-percentage point  change in the yield. When the yield changes by $\Delta y$, the percentage change in the bond price is approximately 
+\begin{align*}
+	\frac{\Delta P}{p} \approx \Delta y \times D^M
+\end{align*}
+\subsubsection{Spot rate}
+spot rate is the interest rate for a no coupon payment in time between. 
+\begin{align*}
+	Bong\ Price = \frac{coupon}{1+r_1}+\frac{coupon}{(1+r_2)^2}+\frac{coupon}{(1+r_3)^3}+\cdots+\frac{coupon}{(1+r_T)^T}+\frac{face\ value}{(1+r_T)^T}
+\end{align*}
+while YTM is the average discount rate over the life of the bond. 
+\subsection{Forward interest rates}
+known $r_1, r_2$ the one-year spot rate and two-year spot rate, the forward rate $f_2$ is equal to 
+\begin{align*}
+	f_2 &= \frac{(1+r_2)^2}{1+r_1}-1
+\end{align*} 
+$(1+r_1)(1+f_2) < (1+r^2)^2$ cannot stand since investor can short the stradegy with $1+r_1)(1+f_2)$ and long strategy $(1+r^2)^2$. Thus
+\begin{align*}
+	(1+r_N)^N &= (1+r_1)(1+f_2)(1+f_3)\cdots(1+f_N)\\
+	(1+r_N)^N &=(1+r_{N-1})^{N-1}(1+f_N)
+\end{align*}
+\subsection{Unbiased expectation hypothesis}
+When investors are assumed to be risk neutral, 
+\begin{align*}
+	f_K = E[r_{K-1}-r_K]
+\end{align*}
+i.e the observed forward rates reflect the market expectation of future short rates.\\
+if investors are assumed to be risk adverse:
+\begin{align*}
+	&(1+r_1)(1+f_2)< (1+r1)(1+r_{1,2})\\
+	&\implies \text{less payoff } \rightarrow \text{less risky}\\
+	&\implies f_2 < E[r_{1,2}]
+\end{align*}
+Thus, an upward sloping term structure can be interpreted as the market believes that future one-period spot rate is going to be higher than current one-period spot rate
+\begin{align*}
+	E[r_{1,2}] > 2 &\implies (1+r_2)^2 = (1+r_1)(1+f_2)\\
+	&= (1+r_1)(1+E[r_{1,2}]) > (1+r_1)^2\\
+	&\implies r_2>r_1\\
+	r_1<r_1 &\implies (1+r_1)^2 < (1+r_2)^2\\
+	&\implies (1+r_1)^2 < (1+r_1)(1+f_2)\\
+	&\implies (1+r_1)^2 < (1+r_1)(1+E[r_{1,2}])\\
+	&\implies r_1 < E[r_{1,2}]
+\end{align*}
+\subsection{Liquidity premium hypothesis}
+Assume the investors are risk-averse and faced with uncertain liquidity shocks. For investments with identical expected returns but different investment horizons, such risk-adverse investors will choose the short-term securities, in order to hedge against liquidity shocks. \\
+As investors have a preference for short-term securities than long-term, then long-term securities must offer higher average returns for compensations.
+$\implies$ This hypothesis implies an upward slopping yield curve.
+\subsection{Market segmentation hypothesis}
+The notion of market segmentation is that long- and short-term bonds are traded in distinct, separate markets. Different clienteles of investors operate in different bond markets and do not trade across the term structure. 
+\begin{itemize}
+	\item interactions of long-term borrowers and lenders determine long dated yields
+	\item interactions of short-term borrowers and lenders determine short dated yields
+\end{itemize}
+Hence, there is no relation between forward rates and future short rates. 
+
+\section{Stock}
+Stockholders are the owners of the firm. They have the right to vote on company policy and strategy, whereas bondholders do not. Stockholders are entitled to the \textbf{residual} cash flow from the firm's operations. 
+\subsection{Basic Terminology}
+\begin{itemize}
+	\item \textbf{Common stock}: security representing a share in the ownership of a corporation
+	\item \textbf{Initial Public Offering}: the first sale of stock in a corporation to the public
+	\item \textbf{Secondary Market}: a market, often a stock exchange, in which previously issued shares are traded among investors
+	\item \textbf{Dividends}: payments made by companies to shareholders. These are usually exante uncertain(unlike bond coupons)
+	\item \textbf{Dividend Yield}: ratio of annual dividend to share price
+	\item \textbf{P/E ratio}: share price divided by earnings per share.
+\end{itemize}
+
+\subsection{Measure expected stock return}
+one year return using ex-div prices
+\begin{align*}
+	r_{t+1} &= \frac{P_{t+1}+D_{t+1}-P_t}{P_t}\\
+	E_t[r_{t+1}] &= \frac{E_t[P_{t+1}+D_{t+1}]-P_t}{P_t} = \frac{E_t[D_{t+1}]}{P_t}+\frac{E_t[P_{t+1}-P_t]}{P_t}
+\end{align*}
+while $\frac{E_t[D_{t+1}]}{P_t}$ is called the expected dividend yield, and $\frac{E_t[P_{t+1}-P_t]}{P_t}$ is called the expected capital gain.
+
+\subsubsection{Constant expected return and stock price}
+Assuming a constant expected return $r$, through induction process
+\begin{align*}
+	r&= \frac{E_t[D_{t+1}]}{P_t}+\frac{E_t[P_{t+1}-P_t]}{P_t}\implies P_t = \frac{E_t[D_{t+1}+P_{t+1}]}{1+r}\\
+	P_{t+1} &= \frac{E_{t+1}[D_{t+2}+P_{t+2}]}{1+r} = \frac{E_{t+1}[P_{t+2}]+E_{t+1}[D_{t+2}]}{1+r}\\
+	P_t &= \frac{D_{t+1}+\frac{E_{t+1[D_{t+2}+P_{t+2}]}}{1+r}}{1+r} = \frac{E_{t}[D_{t+1}]}{1+r}+\frac{E_t[E_{t+1}[D_{t+2}]]}{(1+r)^2} + \frac{E_t[E_{t+1}[P_{t+2}]]}{(1+r)^2}\\
+	&=\frac{E_t[D_{t+1}]}{1+r}+\frac{E_t[D_{t+2}]}{(1+r)^2}+\frac{E_t[P_{t+2}]}{(1+r)^2}\\
+	\implies P_t &= \sum_{k=1}^\infty \frac{E_t[D_{t+k}]}{(1+r)^k} = \frac{D}{r}
+\end{align*}
+\textbf{Gordon Gorwoth Formula: }$P_t = \frac{D}{r-g}$
+\begin{itemize}
+	\item $g>r\implies$ the company is giving money which cannot stand. 
+\end{itemize}
+Meanwhile, let $P_t^*$ denote the PV of actual subsequent dividends, while $P_t =\sum_{k=1}^\infty \frac{E_t[D_{t+k}]}{(1+r)^k}$ is the idealized valuation model. 
+\begin{align*}
+	P_t^* &= E_t[P_t^*]+\epsilon = P_t+\epsilon\\
+	Var(P_t^*) &= Var(P_t+\epsilon) = Var(P_t)+Var(\epsilon)\\
+	&\implies Var(P_t) \leq Var(P_t^*)
+\end{align*}
+
+\subsubsection{Multi-Stage growth model}
+Example of a multi-stage dividend discount model in which the high-growth stage last four years
+\begin{align*}
+	P_0 = \frac{E_0[D_1]}{(1+r)}+\frac{E_0[D_2]}{(1+r)^2}+\frac{E_0[D_3]}{(1+r)^3}  +\frac{E_0[D_4]}{(1+r)^4} +\frac{E_0[P_4]}{(1+r)^4}
+\end{align*}
+While $\frac{E_0[D_1]}{(1+r)}+\frac{E_0[D_2]}{(1+r)^2}+\frac{E_0[D_3]}{(1+r)^3}  +\frac{E_0[D_4]}{(1+r)^4}$ represent the first stage with high growth, $\frac{E_0[P_4]}{(1+r)^4}$ represent the second stage with stable growth. \\
+$E_0[P_4]$ is the terminal value at the 4th year, and is the expected dividend at year 5, and assumed to be thereafter grow constantly at a rate of g forever
+\begin{align*}
+	E_0[P_4] = \frac{E_0[D_5]}{r-g}
+\end{align*}
+\subsection{Payout, Plowback and Growth}
+\begin{itemize}
+	\item \textbf{Plowback ratio: } the proportion of earnings retained by the firm and used for investment
+	\item \textbf{Payout ratio: } the ratio of dividends to earnings. 
+	\item \textbf{Return-on-equity: }the expected return on the firm's investment. It measures the amount of earnings that a dollar of equity(book value) creates. 
+\end{itemize}
+
+\begin{align*}
+	DPS_t &= EPS_t \times \text{Payout ratio}_t \\
+	&= EPS_t\times (1-\text{Plowback ratio}_t)\\
+	ROE_t &= \frac{EPS_t}{BV_{t-1}}\\
+	g &=\text{Plowback ratio}\times ROE
+\end{align*}
+By definition, the change in the book value of equity is due to retained earnings:
+\begin{align*}
+	BV_t-BV_{t-1} &= EPS_t\times \text{Plowback ratio}_t \\
+	&= ROE_t\times BV_{t-1}\times \text{Plowback ratio}_t\\
+	\frac{(BV_t-BV_{t-1})}{BV_{t-1}}&= ROE_t\times \text{Plowback ratio}_t = g
+\end{align*}
+i.e book value for stocks grow at $1+g\%$ each year due to the reinvestment\\
+Similarly, for dividends, we have
+\begin{align*}
+	DPS_t &= (1-\text{Plowback ratio}_t)\times EPS_t\\
+	&= (1-\text{Plowback ratio}_t)\times ROE_t \times BV_{t-1}\\
+	DPS_{t-1} &= (1-\text{Plowback ratio}_{t-1})\times EPS_{t-1}\\
+	&= (1-\text{Plowback ratio}_{t-1})\times ROE-{t-1}\times BV_{t-2}
+\end{align*}
+i.e dividend per share grow at $1+g\%$ each year due to the reinvestment\\
+If ROE and Plowback ratio are constant, then 
+\begin{align*}
+	\frac{(DPS_t-DPS_{t-1})}{DPS_{t-1}} = \frac{(BV_{t-1}-BV_{t-2})}{BV_{t-2}} = ROE \times \text{Plowback ratio}
+\end{align*}
+$\Delta DPS$ and $\Delta BV$ in the previous year shares constant growth rate. \\
+Price of stocks with plowback ratio p is
+\begin{align*}
+	g &= p\times ROE\\
+	P &= \frac{p\times D}{r-g}\\
+	&=\frac{p\times D}{r-p\times ROE}
+\end{align*}
+
+\subsubsection{Insight about Payout v.s. Investment}
+The difference in value between the firm that plows back earnings and the firm that does not is called \textbf{Present Value of Growth Opportunities(PVGO)}
+\begin{align*}
+	PVGO = \frac{D}{r}-\frac{p\times D}{r-p\times ROE}
+\end{align*}
+\subsubsection{P/E ratio and required returns}
+
+\begin{align*}
+	P = EPS/r +PVGO
+\end{align*}
+The stock price is equal to the present value of earnings under the assumption that all earnings are paid as dividends plus the present value of growth opportunities.
+\begin{align*}
+	E/P = r\times (1-\frac{PVGO}{P})
+\end{align*}
+E/P ratio are not a good measure of required returns. They will dramatically understate the required return for firms with large PVGO.
+
+\subsection{Risk Measures}
+\textbf{expected return:} the sum of the return in each scenario multiplied by the probability of the scenario \\
+\begin{align*}
+	E[r] = \sum_s r_s\times p_s
+\end{align*}
+\textbf{Variance }: notion of risk that focuses on how different your investment return will be form the expected value; as such it measures dispersion of outcomes around the average.
+\begin{align*}
+	\sigma^2[r] = \sum_s(r_s-E[r])^2\times p_s
+\end{align*}
+Higher variance $\implies$ higher dispersion around the average $\implies$ higher risk.\\
+\textbf{Standard deviation:} the square root of the variance and is in the same unit as return. However, work less well if the return's distribution is heavily skewed. 
+\subsubsection{Sample parameters}
+given historical data on a stock's performance over K years, we calculate a \textbf{sample variance} and sample mean
+\begin{align*}
+	s^2&= \frac{1}{K-1}\sum_{i=1}^K(r_i-\bar{r})^2\\
+	\bar{r} &= \frac{1}{K}\sum_{i=1}^K r_i
+\end{align*}
+\subsubsection{Covariance}
+The variance of a portfolio of investments depends on how the investments move with respect to one another. The covariance is a summary measure of co-movement between two random variables
+\begin{align*}
+	cov[r_1,r_2] &= \sum_s(r_{1,s}-E[r_1])\times (r_{2,s}-E[r_2])\times p_s\\
+	cov_{sample}^2 &= \frac{1}{K-1}\sum_{i=1}^K(r_{1,i}-\bar{r_1})(r_{2,i}-\bar{r_2})
+\end{align*}
+\subsubsection{Correlation coefficient}
+\begin{align*}
+	\rho[r_1,r_2] = \frac{Cov[r_1,r_2]}{\sigma[r_1]\sigma[r_2]}
+\end{align*}
+The correlation coefficient is between -1 and 1, making it easier to access the strength of co-movement between two random variables.
+
+\section{Portfolio risk and return}
+\begin{itemize}
+	\item \textbf{Portfolio weights:} $w_i$ is the proportion of your invested wealth that you have allocated to asset i
+	\begin{itemize}
+		\item  $\sum_{i=1}^Nw_i = 1$. 
+		\item the portfolio weight can be negative through a short sale
+	\end{itemize}
+	\item \textbf{Expected returns: } $\mu_i$ is the expected return on asset i. 
+	\item \textbf{Variance:} $\sigma_i^2$ is the variance of the return on asset i. 
+	\item \textbf{Covariance: }$\sigma_{ij}$ is the covariance between the returns on asset i and j
+	\item \textbf{Correlations: }$\rho_{ij}$ is the correlation between the returns on asset i and j.
+\end{itemize}
+\textbf{Expected portfolio return}
+\begin{align*}
+	\mu_p = E[r_p] = E[\sum_{i=1}^N r_i\times w_i] = \sum_{i=1}^N\mu_i\times w_i
+\end{align*}
+\textbf{Portfolio variance}
+\begin{align*}
+	Var[r_p] &= Cov[r_p,r_p] = \sum_{i=1}^N\sum_{j=1}^N w_i\times w_j \times \rho_{ij}\times \sigma_i\times \sigma_j\\
+	&=\sum_{i=1}^N\sigma_i^2\times w_i^2 + \sum_{i=1}^N\sum_{j\neq i}^Nw_i\times w_j \times \rho_{ij}\times \sigma_i\times \sigma_j
+\end{align*}
+
+\subsection{Diversification}
+For positive weights
+\begin{align*}
+	\sigma_p^2\leq \sigma_1\times w_1+\sigma_2\times w_2\\
+	\text{"=" holds} \iff \rho_{ij}=1
+\end{align*}
+Interpretation: The standard deviation of a portfolio will be smaller than the weighted average standard deviations of the two stocks if the correlation between the two stocks is less than one, and can be smaller than that of either one. \\
+\textbf{The reduction in portfolio variance associated with holding different stocks works best when correlations are smaller.}\\
+\textbf{Implication: } Building a portfolio containing many stocks is a smart thing to do because it decreases portfolio risk. This is called \textbf{diversification}
+\subsubsection{Math illustration of diversification}
+Assume equal weighted portfolio of N stocks and have the same variance, also each pair have the same return correlation. 
+\begin{align*}
+	\sigma_p^2 &= \sum_{i=1}^N\sigma^2(\frac{1}{N})^2+ \sum_{i=1}^N\sum_{j\neq i}^N \frac{1}{N}\times \frac{1}{N} \times \rho\times \sigma\times \sigma = \frac{1}{N}\sigma^2+\frac{N-1}{N}\sigma^2\rho\\
+	N &\to \infty, \sigma_p^2\to \sigma^2\rho
+\end{align*}
+As N increase, the variance decrease but hits a limit given by the covariance. 
+\subsubsection{Diversifiable and undiversifiable risk}
+\begin{itemize}
+	\item \textbf{Diversifiable risk:} cause by firm-specific events that affect the return of a single asset but not the returns of other assets. Also known as: idiosyncratic risk, firm-specific risk, unsystematic risk
+	\item \textbf{Undiversifiable risk: } caused by the tendency of returns on stocks to move together due to the changes in macroeconomics variables, technological environment, and political situations. Also known as: systematic risk, market risk
+\end{itemize}
+\subsection{Portfolio Theory(Markowitz portfolio theory)}
+\begin{itemize}
+	\item \textbf{Feasible set: }the set of portfolio risk and return pairs that it is possible to generate from a given set of securities
+	\item \textbf{Mean-variance efficient portfolio:} has the highest expected return for a given level of risk.
+	\item \textbf{Efficient frontier:} the set of mean-variance efficient portfolios
+	\item \textbf{Optimal portfolio:} it must lie on the efficient frontier and we use the investor's indifference curve to identify it. 
+\end{itemize}
+To obtained the frontier:
+\begin{align*}
+	\stackrel{min}{w_1,\cdots,w_N} Var[r_p] &= \sum_{i=1}^N\sum_{j=1}^N w_i\times w_j \times \rho_{ij}\times \sigma_i\times \sigma_j \\
+	\text{ s.t.} w_1&+\cdots+w_N = 1\\
+	E{r_p} &= w_1\mu_1+\cdots+w_N\mu_N = r
+\end{align*}
+An investor shall choose the point where his indifference curve is tangent to the efficient frontier, where he obtain the highest possible utility.
+\subsection{Risk-free asset}
+The portfolio weight on the risk-free asset is $1-\sum_{i=1}^Nw_i$, and an investor's optimization problem becomes
+\begin{align*}
+	\stackrel{min}{w_1,\cdots,w_N} Var[r_p] &= \sum_{i=1}^N\sum_{j=1}^N w_i\times w_j \times \rho_{ij}\times \sigma_i\times \sigma_j \\
+	\text{ s.t.} E{r_p} &= w_1\mu_1+\cdots+w_N\mu_N +(1-\sum_{i=1}^Nw_i)r_f= r
+\end{align*}
+Thus, the characteristic of the portfolio consisting a risk-free asset and a single risky stock is
+\begin{itemize}
+	\item $E[r_p] = w\cdot \mu_s+(1-w)\cdot r_f$
+	\item $Var[r_p] = w^2\cdot \sigma_s^2$
+	\item $\sigma_p = w\cdot \sigma_s$
+\end{itemize}
+\subsection{Sharpe Ratio}
+Combine the first and third equation and eliminate w, and obtained:
+\begin{align*}
+	E[r_p] &= \frac{\sigma_p}{\sigma_s}\cdot \mu_s+(1-\frac{\sigma_p}{\sigma_s})\cdot r_f\\
+	&=\frac{\sigma_p}{\sigma_s}\cdot \mu_s+ r_f-\frac{\sigma_p}{\sigma_s}\cdot r_f\\
+	&= r_f+\frac{\sigma_p}{\sigma_s}\cdot (\mu_s-r_f)\\
+	&=r_f+\frac{(\mu_s-r_f)}{\sigma_s}\cdot \sigma_p
+\end{align*}
+In the graph which has $E[r_p]$ on Y axis, $\sigma_p$ on X axis, the equation describe a straight line with $r_f$ as the vertical intercept. The slope $\frac{\mu_s-r_f}{\sigma_s}$ is called the sharpe ratio. 
+
+\subsection{Optimal Portfolios}
+We would like to choose a risky portfolio to combine with the risk-free asset so that we extend the feasible set as much as we can, and the portfolio is the point at which the frontier of risky assiet is tangent to a straight line through the risk-free rate, and the portfolio is called \textbf{tangency portfolio. } At tangency portfolio, the investor get the greatest sharpe ratio(same SD but highest return)\\
+\begin{figure}
+	\centering
+    \includegraphics[width=0.8\paperwidth]{FIN6104OptPortf.jpeg}
+\end{figure} 
+Investors with different levels of risk aversions satisfy their personal preference by combining the tangency portfolio with the risk-free assets with different weight. In the given example
+\begin{itemize}
+	\item Investor X lending out money with risk-free interest rate
+	\item Investor Y borrows money at the risk-free rate and short the risk-free asset.
+\end{itemize}
+\begin{align*}
+	\text{\textbf{Tangency portfolio = Market portfolio}}
+\end{align*}
+
+\section{The CAPM}
+\begin{align*}
+	E[r_i] = r_f+\beta_i(E[r_m]-r_f), \text{where }\beta_i = \frac{Cov(r_i,r_m)}{Var(r_m)}
+\end{align*}
+\begin{itemize}
+	\item $(E[r_m]-r_f)$ is called the market premium
+	\item $\beta_i$ measures asset i's \textbf{systematic} risk, and only this part of risk is rewarded with a positive premium. Idiosyncratic risk such as market crush cannot be controlled, thus won't be compensated. 
+	\item \textbf{$\beta$ depends on how much the asset return co-moves with the return of the market}
+	\item $\beta_i = \frac{\rho_{i,m}\sigma_i}{\sigma_m}\to \sigma_i=0\implies \beta_i=0$, thus earns risk-free rate
+	\item market portfolio has a beta equal to 1
+\end{itemize}
+\subsection{Beta for Portfolios}
+The beta of a portfolio is equal to the \textbf{weighted average} of the betas of the individual assets in the portfolio
+\begin{align*}
+	\beta_p = \sum_{i=1}^N\beta_i\cdot w_i
+\end{align*}
+
+\subsection{Deviation from the SML}
+\begin{itemize}
+	\item \textbf{Security Market Line(SML)}: $E[r]$ on $\beta$ (linear)
+	\item \textbf{Capital Market Line(CML)}:$E[r]$ on SD
+\end{itemize}
+Stock has a higher expected return than CAPM indicates that the stock has an abnormal or excess positive return. The stock price is currently under-priced. 
+\begin{figure}[ht]
+	\centering
+    \includegraphics[width=0.8\paperwidth]{FIN6104DevSML.jpeg}
+\end{figure} 
+
+\subsection{Empirical evaluation of CAPM}
+\begin{align*}
+	E[r_i]-r_f = a_i+\beta_i(E[r_m]-r_f)
+\end{align*}
+\begin{itemize}
+	\item If CAPM holds, estimated value for $\alpha$ should be zero for all stocks
+	\item Expected excess returns should be linear in $\beta$
+	\begin{itemize}
+		\item \textbf{Size:} small stocks tend to have higher expected return than big stocks while holding constant $\beta$
+		\item \textbf{Value: }mean returns on stocks with high book-to-market tend to be larger than those on low book-to-market stocks while holding constant $\beta$
+	\end{itemize}
+	\item The slope of SML should be approximately the excess return on the market portfolio
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%% After Midterm%%%%%%%%%%%%%%
+(before midterm)
+\pagebreak
+\section{Capital Budgeting}
+\textbf{Basic Principle: } an investment is worth undertaking if its benefits are greater than its costs. 
+\subsection{Net Present Value(NPV)}
+To evaluate the overall value of an investment(in terms of dollars), we need to bring both benefits and costs to a common time: the present.\\
+NPV = PV(benefits)-PV(costs)
+\begin{align*}
+	NPV = \sum_{t=0}^T \frac{C_t}{(1+r)^t}
+\end{align*}
+\begin{itemize}
+	\item $C_0$ is typically negative, representing an initial investment amount. 
+\end{itemize}
+\subsubsection{NPV Rule}
+\textbf{Decision Rule}
+\begin{itemize}
+	\item if NPV$>$0, you should accept the project
+	\item if NPV$<$0, you should reject the project
+\end{itemize}
+
+\subsection{Payback Period Rule}
+\textbf{Payback period: }the time it takes for a project to cover its investment(don't have to be present value).\\
+\textbf{Decision Rule: }accept the project if its payback period is less than or equal to a pre-defined cutoff time
+
+\subsection{Internal Rate of Return(IRR) Rule}
+\textbf{Definition:} IRR is the discount rate that makes the NPV of a project equals to 0. It measures the average rate of return of the project. \\
+\textbf{Decision Rule: } Accept the investment project if the IRR is greater than the required rate of return(i.e cost of capital, also called the \textbf{hurdle rate})
+\subsubsection{Pitfalls of IRR}
+\begin{itemize}
+	\item \textbf{Lending V.S Borrowing}: If two stream of cash flows are exactly opposite to each other, then they must have the same IRR
+	\item \textbf{No IRR}: It is possible for a project to have no IRR while its NPV is positive. Usually because the project is too good or too bad. 
+	\item \textbf{Multiple rates of return: }If the cash flow of a project switch sign more than once, the graph of cash flow on NPV might have more than one intersection with X axis. 
+\end{itemize}
+
+\subsection{Free Cash Flows(FCF)}
+\textbf{From accounting earnings to cash flows}
+\begin{itemize}
+	\item add back non-cash expenses
+	\item subtract out cash outflows which are not expensed
+	\item accrual revenues and expenses into cash revenues and expenses
+\end{itemize}
+\begin{align*}
+	FCF = (1-t)\times EBIT+Depreciation-CAPEX-\Delta NWC+Salvage(after tax)
+\end{align*}
+\subsubsection{EBIT}
+\begin{align*}
+	EBIT &= EBITDA-Depreciation-Amortization\\
+	&= COGS - SG\&A - R\&D
+\end{align*}
+FCF ignores the effect of debt which doesn't conclude the tax reduction caused by debt. Thus, the cash flow of the project is determined independently of the financing decisions. 
+\subsubsection{Depreciation}
+In this course, we used the straight-line depreciation
+\begin{align*}
+	Annual \ depreciation = Initial \ CAPEX/\text{the expected life of the project}
+\end{align*}
+Since depreciation is not a cash flow but expensed in accounting, but tax is cash flow, keep EBITDA constant, greater depreciation results in higher cash flows as depreciation generates "tax shield"
+\begin{align*}
+	(1-t)\times EBIT + Depreciation &= (1-t)\times (EBITDA - Depreciation)+ Depreciation\\
+	&= (1-t)\times (EBITDA+t\times Depreciation
+\end{align*}
+
+\subsubsection{$\Delta$Net Working Capital}
+\begin{align*}
+	\Delta NWC &= NWC_t - NWC_{t-1}\\
+	NWC &= current \ asset - current \ liability \\
+	&= (cash+inventory+accounts \ receivable) - accounts \ payable
+\end{align*}
+
+\subsubsection{Salvage value}
+At the end of the project, typically the used equipment, machinery, or plant can be sold. You have to pay taxes on the difference between the asset's sale price and the book value.
+\begin{align*}
+	after-tax\ salve \ value= estimated \ selling \ price - t\times (estimated \ selling \ price - remaining\ book\ value)
+\end{align*}
+If a sales price is below the book value, the difference constitutes a book loss, which give rises to a tax credit. 
+\subsubsection{Comments}
+\textbf{Incremental cash flows}: only the incremental cash flows that occurs as a consequence of undertaking the project should be relevant for your decision-making.\\
+\textbf{sunk cost}: the cost that has already been incurred, regardless of whether now you accept the project or not. \\
+\textbf{opportunity cost}: If investing in a particular project causes other projects to have a lower cash flows, you must include these incremental cash flows in your project valuation. 
+
+\section{Capital Structure}
+When a firm needs to raise funding for its investments, it must decide on the type of financing. \\
+\textbf{capital structure:} constituted by the relative proportions of debt, equity and other securities. as a proxy, we use the \textbf{leverage ratio:}Debt/Asset(or Debt/Equity)\\
+Capital structure matters since not only the productivity of assets need to be maximized, the capital shall also be achieved as cheaply as possible for sustainable development. 
+\subsection{Leverage}
+If we assume the interest rate on debt is less than the expected return on equity, then higher leverage will:
+\begin{itemize}
+	\item Boost earnings per share
+	\item Increases the expected return on equity
+	\item Increases the volatility of return on equity
+\end{itemize}
+\textbf{Note: } When the firm raise leverage, even interest reduce the amount of income, however, the number of share decrease more. Therefore each individual receive more dividend. 
+
+\subsection{Modigliani-Miller(MM) theorem - Original}
+\textbf{MM theorem: irrelevance of capital structure} - The value of the firm and the wealth of the shareholders do NOT change when capital structure change. \\
+In perfect capital market(according to MM assumptions), investors can always borrow and make return riskier on their own. Thus, the value of a firm depends on its profitability but not its borrowing ability. \\
+\textbf{Note:} Leverage gain profits when cost of obtaining leverage is lower than profitability. 
+
+\subsubsection{MM Proposition 1}
+As investor can freely adjust their own leverage, capital structure is irrelevant for determining the value of the firm.
+\begin{align*}
+	V_U = V_L
+\end{align*}
+
+\subsubsection{MM Proposition 2}
+The un-levered and levered firms should have the same cost of capital, and leverage in crease the risk and return to shareholders as follow:
+\begin{align*}
+	r_U &= r_L = \frac{D}{D+E}r_D+\frac{E}{D+E}r_E\\
+	r_E &= [r_U - \frac{D}{D+E}r_D]\cdot \frac{D+E}{E}\\
+	&=r_U[1+\frac{D}{E}] - r_D\frac{D}{E}\\
+	&= r_U-[r_U-r_D]\frac{D}{E}\\
+	D \uparrow &\implies r_E \uparrow
+\end{align*}
+$r_U$ is often denoted as $r_A$, referred to as the \textbf{asset (or unlevered) cost of capital}.\\
+Since in CAPM, $\beta_i= \frac{cov(r_i, r_m)}{var(r_m)}$ and $\beta_i$ is linear to $r_i$. Thus, through MM theorem, we can also implies the relationships for beta.
+\begin{align*}
+	\beta_U &= \beta_L = \frac{D}{D+E}\beta_D+\frac{E}{D+E}\beta_E\\
+	\beta_E &= \beta_U + [\beta_U-\beta_D]\frac{D}{E}
+\end{align*}
+Again, we often denote the unlevered beta $\beta_A$ (called \textbf{asset beta})
+
+\subsection{MM theorem - with tax}
+Dividends are treated as return to the firm's owner and are not tax deductible, but interest is regarded as a cost of doing business, which cause tax deductible. 
+
+\subsubsection{PVTS definition}
+For a given period, 
+\begin{align*}
+	interest \ tax\ shield(TS) = interest \times tax\ rate
+\end{align*}
+we need to discount all the expected future tax shields to get the \textbf{present value of tax shields(PVTS)}
+
+\subsubsection{PVTS - constant level of debt}
+We typically assume in this case that $r_{TS} = r_D$ i.e the discount rate of tax shields is the same as the cost of debt
+\begin{align*}
+	PVTS = \sum_{i=1}^\infty \frac{TS_i}{(1+r_{TS})^i} = \frac{D*r_D*t}{r_D} = D*t
+\end{align*}
+
+\subsubsection{PVTS - constant debt-to-asset ratio}
+In this case we assume $r_{TS} = r_A$ since if D/V constant, than D(hence tax shield) moves up and down with V, suggesting that the risk of tax shield is similar to that of the firm's asset.
+
+\subsubsection{Adjusted Present Value(APV)}
+This approach separates the effects of capital structure on value from the estimation of asset values. 
+\begin{align*}
+	V_U = \sum_{i=1}^\infty \frac{FCF_i}{(1+r_A)^i}\\
+	V_L = V_U+PVTS
+\end{align*}
+
+\subsubsection{Unlevering}
+It is straight forward to obtain estimates of $r_D$ and $r_E$. However, we do NOT directly observe $r_A$(or$r_U$). Thus we use one of the unlevering formulas that shows the relationship between $r_D, r_E$  and $r_A$ to obtain the unlevered cost of capital. 
+\begin{itemize}
+	\item \textbf{Constant level of debt:} $r_U = r_A = \frac{D(1-t)}{D(1-t)+E}r_D+\frac{E}{D(1-t)+E}r_E$ and $\beta_U = \beta_A = \frac{D(1-t)}{D(1-t)+E}\beta_D+\frac{E}{D(1-t)+E}\beta_E$
+	\item \textbf{Constant debt-to-asset ratio: } $r_U = r_A = \frac{D}{D+E}r_D+\frac{E}{D+E}r_E$ and $\beta_U = \beta_A = \frac{D}{D+E}\beta_D+\frac{E}{D+E}\beta_E$
+\end{itemize}
+The start point of the unlevering formula comes from the balance sheet of the firm:
+\begin{align*}
+	\frac{A}{A+PVTS}r_A + \frac{PVTS}{A+PVTS}r_{TS} = \frac{D}{D+E}r_D+\frac{E}{D+E}r_E
+\end{align*}
+
+\begin{itemize}
+	\item \textbf{Constant level of debt:} $r_{TS} = r_D$ and $PVTS = D*t$
+	\item \textbf{Constant debt-to-asset ratio: }$r_{TS} = r_A$
+\end{itemize}
+
+\subsubsection{Weighted Average Cost of Capital(WACC)}
+Since $V_L > V_U = \sum_{i=1}^\infty \frac{FCF_i}{(1+r_A)^i}$, tax has lowered the overall cost of capital for the firm and therefore increase the firm value. Thus, the alternative valuation approach to take taxes into account is to adjust the discount rate while keeping the cash flows as unlevered. 
+\begin{align*}
+	r_{WACC} = \frac{D}{D+E}r_D(1-t)+\frac{E}{D+E}r_E
+\end{align*}
+\begin{itemize}
+	\item Due to the interest tax shield, the cost of debt is effectively $r_D(1-t)$
+	\item This is the (after tax) Weighted Average Cost of Capital(WACC) and we often refer to the levered cost of capital $r_L = r_{WACC}$
+\end{itemize}
+The levered firm value is 
+\begin{align*}
+	V_L = \sum_{i=1}^\infty\frac{FCF_i}{(1+r_{WACC})^i}
+\end{align*}
+In practice, firm tend to use a constant WACC, and the WACC method does not work well when the capital structure is expected to vary substantially over time. 
+
+\subsubsection{"Bottom up" Beta}
+\begin{enumerate}
+	\item find \textbf{comparable firms} which are assumed with similar \textbf{business risk}, i.e similar $r_A$ or $\beta_A$; these firms can have very different \textbf{financial risk}, i.e $r_E$ or $\beta_E$
+	\item Unlevered each comparable firm's $\beta_E$ to estimate is asset beta $\beta_A$; \textbf{Constant level of debt:} $\beta_A = \frac{D(1-t)}{D(1-t)+E}\beta_D+\frac{E}{D(1-t)+E}\beta_E$; \textbf{Constant debt-to-asset ratio: } $\beta_A = \frac{D}{D+E}\beta_D+\frac{E}{D+E}\beta_E$
+	\item With comparable firms' $\beta_A$, estimate the target firm's $\beta_A$; simply by average or weighted as needed.
+	\item \textbf{relever} target firm's $\beta_A$ to $\beta_E$  using the unlevering formular;\textbf{Constant level of debt:} $\beta_E = \beta_A+ \frac{D(1-t)}{E}[\beta_A-\beta_D]$; \textbf{Constant debt-to-asset ratio: } $\beta_E = \beta_A+ \frac{D}{E}[\beta_A-\beta_D]$
+\end{enumerate}
+
+\subsection{MM theorem additionally with Cost of financial distress}
+\textbf{Financial distress: } cash flows are not sufficient to cover current obligations, which starts a process of resolving the broken contract with creditors. 
+\begin{itemize}
+	\item private negotiation
+	\item bankruptcy supervised by court
+\end{itemize}
+
+\subsubsection{Direct bankruptcy cost}
+\begin{itemize}
+	\item Legal expenses, court costs, advisory fees. etc
+	\item Opportunity cost also count. E.g time spend by dealing with creditors. 
+\end{itemize}
+Since the likelihood of bankrupt is small and the value is small as well, thus direct cost seems second order compared with the tax shield benefits
+
+\subsubsection{Indirect bankruptcy cost}
+There are potentially large indirect cost of financial distress.
+\begin{itemize}
+	\item sells assets in fire sales
+	\item lose flexibility if they must continually obtain permission from bankruptcy court for any important decisions
+	\item lose customers and suppliers may be reluctant to continue supplies and less willing to grant trade credit
+	\item \textbf{Agency conflicts} between debt holders and mangement
+	\begin{itemize}
+		\item \textbf{Debt overhang:}(under investment) Management may be unable to raise new capital for positive NPV projects
+		\item \textbf{Risk shifting:} (over investment) Management may invest in risky projects even if they have negative NPV; Debtholders prefer safer projects since they only care about the first X dollars; Shareholders may prefer riskier project since they are residual claimant and they hope for the upside. 
+	\end{itemize}
+\end{itemize} 
+
+\subsubsection{Textbook view of optimal capital structure}
+\begin{align*}
+	argmin\ V_L = V_U + PVTS - PV(Financial\ distress \ costs)
+\end{align*}
+
+\subsection{MM theorem additionally with assymmetric info}
+\textbf{Pecking order} of fiancing
+\begin{enumerate}
+	\item First with internal funds(retained earnings)
+	\item Then with debts
+	\item finally with equity
+\end{enumerate}
+\subsubsection{Why issue new share is the last choice}
+\begin{itemize}
+	\item The manager tend to issues new stocks when it is overvalued
+	\item Investor know this and claims that issues stocks indicate overvalue, while issues debt indicates undervalue.
+	\item Seasonal equity offering(SEO)'s experience shows a decrease in stock price; resulted by two confounding effects
+	\begin{enumerate}
+		\item Change in capital structure by lowering leverage
+		\item issue new equity conveys negative signals
+	\end{enumerate}
+	\item Block traders: large sell order tells the market that the seller has some negative private information about the company
+	\item \textbf{with uncertainty and assym. info}, investors tend to undervalue good companies while good companies and bad companies are in the same pool(pooling effect)
+\end{itemize}
+An equity issue by an undervalued firm entails a loss of value for its existing shareholders.
+
+\subsubsection{Advantages of Debt}
+\begin{itemize}
+	\item The value of risk-free debt is independent of your private information(Note: debt has higher priority to pay while bankrupt)
+	\item safe debt is fairly priced; hence no mispricing. 
+\end{itemize}
+
+\section{Payout Policy}
+\begin{itemize}
+	\item \textbf{Cash dividend:} firms pay cash to shareholders
+	\item \textbf{Stock repurchase:} firms use cash to buy back stocks(Open market repurchase, tender offer repurchase, dutch auction, private negotiation)
+\end{itemize}
+Under the baseline \textbf{MM assumptions,} payout policy does NOT affect the value of the firm and the wealth of shareholders. 
+
+\section{IPO process}
+An \textbf{Initial public offering(IPO} refers to the process of offering shares of a private corporation to the public in a new stock issuance. 
+\begin{itemize}
+	\item in US: Registration System - choose underwriter and sign underwriting agreements; regulated by \textbf{Securities and Exchange Commission(SEC)}
+	\item in China: Approval System; regulated by \textbf{China Security Regulatory Commission(CSRC)}
+\end{itemize}
+IPO Benefits:
+\begin{itemize}
+	\item raise funds from public investors
+	\item initial investors can cash out and diversify their wealth
+	\item Exit strategies for early investors(VC funds)
+\end{itemize}
+IPO Cost:
+\begin{itemize}
+	\item \textbf{Underwriting cost:} around 7\% commission fees paid to investment banks
+	\item \textbf{IPO Underpricing:} offer price tend to be smaller than first day closing price
+	\item more regulations
+\end{itemize}
+\subsection{IPO Underpricing}
+\begin{align*}
+	\text {First-day return = first-day closing price - IPO offer price}\\
+	\text {Money left on the table = Num. share sold* (closing price-offer price)}
+\end{align*}
+Why underpriced? - \textbf{Benefits for underwriter}
+\begin{itemize}
+	\item Underwriters desire a higher offer price since it generate higher underwriter revenue
+	\item lower price makes it easier to find buyers, reducing marketing costs
+	\item Since most IPO has higher demand than supply, underwriters obtain benefits from buy-side clients' competition for favorable allocations
+\end{itemize}
+Why underpriced? - \textbf{Benefits for issuer}
+\begin{itemize}
+	\item prospect theory suggest that issuers focus on the change in wealth rather than the level of wealth
+	\item good news event(first day return) defeat bad news event(wealth losses from leaving money on the table)
+\end{itemize}
+\subsection{Winner's curse}
+Why underpriced? - \textbf{Info assymetry}
+\begin{itemize}
+	\item informed investors stay from bad debts
+	\item When uninformed investors win the subscription, it tends to be a bad deal
+	\item uninformed investors need a discount to break even on average
+	\item In the event of \textbf{oversubscription}, shares are \textbf{rational}
+\end{itemize}
+\subsection{SPAC}
+A \textbf{Special Purpose Acquisition Company} is a company with no real operation that goes public to raise capital and then find a non-public company to merge with.\\
+Further info: \url{https://zhuanlan.zhihu.com/p/371740756}
+\end{document}

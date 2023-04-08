@@ -1,0 +1,706 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{thrm}
+\newtheorem{thrm}{Theorem}[section]
+\theoremstyle{lma}
+\newtheorem{lma}{Lemma}[section]
+\theoremstyle{ppst}
+\newtheorem{ppst}{Proposition}[section]
+\theoremstyle{crlr}
+\newtheorem{crlr}{Corollary}[section]
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.5}
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+\usepackage{color}  
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true
+    linktoc=all
+    linkcolor=blue
+}
+
+\usepackage{fancyheadings}
+\pagestyle{fancyplain}
+\fancypagestyle{plain}{
+\renewcommand{\headrulewidth}{0.4pt}
+}
+\lhead{\fancyplain{Haoyue(Heather) Tan}{H.}}
+\rhead{\fancyplain{FIN5002}{FIN5002 Glossary Review}}
+\title{FIN5002 Intro to Finance - Glossary Review}
+\author{Heather Tan}
+\date{Summer 2021}
+\begin{document}
+
+\maketitle	
+\tableofcontents
+\pagebreak
+
+\section{Money, Banking and Financial Markets}
+\subsection{Careers in banking and financial markets}
+\begin{itemize}
+	\item Private Sector: Banks Mutual funds,Insurance companies, Pension funds, Hedge funds. \textbf{Roles Include}:
+	\begin{enumerate}
+		\item \textbf{Trading}(Note: gain profit from buy and sell)
+		\item \textbf{Sales} (Note: give info from traders to customers and sell)
+		\item \textbf{Reseaerch}
+		\item \textbf{Corporate Finance and Credit} Crucial to the \textbf{origination} of financial instruments
+	\end{enumerate}
+	\item Public Sector: Central Bank, Deposit insurance, Regulator
+\end{itemize}
+
+\textbf{Money}:"The lubricant that greases the wheels of economic activity". Not just limited to currency(bills and conis) -- also includes \textbf{demand deposits}(checking account0 issued by banks.
+
+\subsection{Banking}
+\begin{itemize}
+	\item Bank and other \textbf{financial intermediaries} take funds from one group(savers) and re-deploy these funds to another group(borrowers).
+	\item Banks are intimately involved in how the central bank of the United States(\textbf{Federal Reserve or "Fed"}) influences overall economic activity.
+	\item \textbf{Monetary Policy} this is how the Fed directly influences the lending and deposit creation activities of banks. 
+\end{itemize}
+
+\section{The Role of Money in the Macroeconomy}
+
+\subsection{The role of money}
+\textbf{non-coincidence of wants}: Using barter(exchange goods or products directly without money), humans would exchange surpluses and is less efficient since there might not have exact matching. 
+\subsubsection{The function of money}
+\begin{enumerate}
+	\item \textbf{Measure of value}
+	\item \textbf{Means of exchange}
+	\item \textbf{Store of wealth}
+\end{enumerate}
+\subsubsection{The Gold Standard}
+\textbf{gold standard}: Instead of the risk of print money paper without limitations, governments backed it with a store of gold of equal value, usually kept at a nation's "Central Bank", where you could always go and exchange it for gold.
+\subsubsection{Fiat Money}
+\textbf{Fiat money}: The government declare that it has value by law or "fait". It was backed only by the "full faith and credit" of the issuing government. 
+\subsubsection{Measuring Money}
+\textbf{Liquid Asset}: Something that can be turned into a generally acceptable medium of exchange, without a loss of value.
+\subsubsection{Money Supply}
+Composition of the Money Supply: \textbf{2 US measures}:
+\begin{enumerate}
+	\item \textbf{M1}: Currency outside banks and checkable deposits(demand deposits)
+	\item \textbf{M2}
+	\begin{itemize}
+		\item small-denomination time deposits
+		\item Money market deposits
+		\item Saving deposits
+		\item Retail money market mutual funds
+	\end{itemize}
+\end{enumerate}
+\subsection{The rold of the Federal Reserve(Fed)}
+The Fed has a \textbf{dual mandate}
+\begin{enumerate}
+	\item \textbf{Maximum employment} = low unemployment
+	\item \textbf{Stable Price} = low inflation
+\end{enumerate}
+
+\subsection{The Economy and Inflation}
+\begin{enumerate}
+	\item \textbf{Inflation} Persistent rise of prices
+	\item \textbf{Hyperinflation} Price rising extremely fast
+	\item \textbf{Disinflation} The inflation rate is declining, but not negative(i.e not deflation)
+	\item \textbf{Deflation} Falling prices, usually during severe recessions or depressions
+\end{enumerate}
+Inflation reduces the real \textbf{purchase power} of the currency, we can buy fewer goods/services with the same nominal amount of money. Hyperinflation happened in Germany, Zimbabwe and Venezuela.
+
+\subsection{Monetary Policy}
+The Fed must act to slow the economy down or \textbf{"tighten"} when it sees sign of inflation. The Fed will \textbf{"ease"} when it feels the economy has cooled down enough.
+\subsubsection{US economic terms}
+\textbf{Recession}: Commonly defined as 2 consecutive quarters of negative GDP growth. \\
+Recovery/Expansion: The economic period following a recession.\\
+\textbf{Depression}: A sustained, long-term recession; the Great Depression in the US ran from 1929 until 1933, when the GDP declined 33\%.\\
+\begin{equation*}
+	\textbf{GDP = C+I+G+(X-M)}
+\end{equation*}
+A central bank has \textbf{3 tools of Monetary Policy}
+\begin{enumerate}
+	\item \textbf{Reserve Requirement}
+	\begin{itemize}
+		\item Banks are required by the Fed to hold reserves in the form of vault cash or on deposit with the Fed against checking account liabilities. This is called a \textbf{fractional reserve system}.
+		\item Banks are able to create money by making loans with \textbf{excess reserves}, those above the Fed's required level of reserves.
+		\item This is the \textbf{money multiplier}.
+	\end{itemize} 
+	\item \textbf{Interbank lending Rate(Fed Funds)}
+	\begin{itemize}
+		\item Banks sometimes need more excess reserves, so they borrow from each other overnight in the Federal Funds market(\textbf{Fed Funds}) at an interest rate called the \textbf{Fed Funds Rate}
+		\item The Fed intervenes via \textbf{Open Market Activity} to change the amount of money available and therefore its price(interest rate).
+		\item Customers at banks at small rural communities (\textbf{regional banks}) tend to salve a lot, so banks in the big cities(\textbf{money center banks}) will borrow overnight from them at the Fed Funds rate to make loans.  
+	\end{itemize}
+	\item \textbf{Discount Rate}
+	\begin{itemize}
+		\item Member banks can go to the central bank(Fed) and borrow emergency funds at the \textbf{Discount Window}.
+		\item When the public become concerned about the safety of their deposits at a bank, they may panic and all try to withdraw all their deposits at once. This is called a \textbf{run on the bank}.
+	\end{itemize}
+\end{enumerate}
+\subsection{Velocity of Money}
+\begin{equation*}
+	\textbf{M $\times$ V = GDP}
+\end{equation*}
+Velocity is the number of times the money supply turns over in a priod of time to equal spending on output. \\
+The central banks is concerned whether the additional spending from increasing the money supply will result in higher production(GDP) or higher prices(inflation).\\
+The central banks needs good economic data to make decisions
+\begin{itemize}
+	\item \textbf{Lagging indicators}: the data after theevent(e.g GDP or Unemployment)
+	\item \textbf{Leading indicators}: the data before the event are more useful. 
+\end{itemize}
+
+
+\section{Financial Instruments, Markets, and Institutions}
+\subsection{Markets}
+\begin{enumerate}
+	\item \textbf{Primary Markets}: Market for issuing a new security and distributing to saver-lenders.
+	\begin{itemize}
+		\item \textbf{Investment Banks}: Information and marketing specialists for newly issued securities.
+	\end{itemize}
+	\item \textbf{Secondary Markets}: Market where existing securities can be exchanged.
+	\begin{itemize}
+		\item \textbf{Over-the-counter(OTC) markets}(Note: directly trade between individuals)
+	\end{itemize}
+\end{enumerate}
+\subsection{Bonds}
+Represent borrowing: An agreement by the borrower/issuer to pay interest on specified dates, and redeem the bond upon maturity. 
+\begin{enumerate}
+	\item \textbf{Perpetuities}: bond with no maturity date, which pay interest forever.
+	\item \textbf{Coupons} attached to the bond, and send in to collect interest(mostly annually or semi-annually)
+	\item \textbf{Zero-coupon bonds}: bonds with no coupon; sold at price well below face value("discount");saver/investor collects interest when the bond matures.
+	\item \textbf{Tax Exempt}: interest earned is not taxed(e.g issued by the state, local, or municipal governments)  
+\end{enumerate}
+\subsubsection{Consols}
+All UK government bonds are called "gild-edged securities" or "\textbf{gilts}".\\
+The \textbf{consols}were first issued in 1751. 
+\subsubsection{Buying a Bond}
+\begin{itemize}
+	\item \textbf{Issuer} The borrower issues a debt security, and must pay principal and interest. Borrow er might be a holding company, operating company , offshore finance subsidiary. 
+	\item \textbf{Face value}: The total amount borrowed is split up into smaller denominations.
+	\item \textbf{Maturity}: Date at which the principal amount must be repaid. 
+\end{itemize}
+Bonds used to exist as physical pieces of paper rather like bank notes. These are know as \textbf{bearer bonds}.
+\subsection{Stocks}
+Stock holders owns part of the corporation and receives \textbf{dividends} from the issuer. 
+\textbf{Three types of stocks}
+\begin{enumerate}
+	\item \textbf{Preferred Stock}: Fixed dividends, priority over common stock
+	\item \textbf{Common Stock}: Variable dividends, based on company's profits
+	\item \textbf{Convertible Stock}: Investor can convert preferred into common at a pre-agreed price. 
+\end{enumerate}
+\textbf{4 Stock Indexed}:
+\begin{enumerate}
+	\item \textbf{Dow Jones Industrial Average(DJIA)}: based on the price of 30 "blue-chip" stocks.
+	\item \textbf{Standard \& Poor's 500 Stock Index (S\& P 500)}:based on prices of 500 individual stocks
+	\item \textbf{NASDAQ} composite Index: based on all stocks listed in NASDAQ
+	\item \textbf{Hang Seng(HSI)}: based on 50 companies; 4 sub-indexes(Finance, Utilities, Properties, Commerce and Industry)
+\end{enumerate}
+Both stocks and bonds are financial securities. They represent claims to a stream of future payments or \textbf{cash flows}
+\subsection{Mortgages}
+Debt incurred in order to buy land or building. 
+\begin{itemize}
+	\item \textbf{Amortized}: principal and interest is gradually repaid over the lift of loan. 
+	\item \textbf{Securitization}: Individual mortgages may be "pooled" and sold as a unit
+\end{itemize}
+\subsection{Derivatives}
+\textbf{4 types of Derivatives}:
+\begin{enumerate}
+	\item \textbf{Forwards}
+	\item \textbf{Futures}
+	\item \textbf{Swaps}
+	\item \textbf{Options}
+\end{enumerate}
+\subsection{Financial Intermediaries}
+\textbf{9 types of financial institutions}
+\begin{enumerate}
+	\item \textbf{Commercial Banks}: Take deposits and make loans
+	\item \textbf{Life Insurance Companies}: Receive funds in form of premiums; used the funds is based on mortality statistics -- predict when funds will be needed; Invest in long-term securities -- high yield.
+	\item \textbf{Pension Funds}: Receive funds from working individuals building "nest-egg".
+	\item \textbf{Mutual Funds}: Pool funds from many people.
+	\item \textbf{Money Market Mutual Funds}: Individual purchases shares in the funds.
+	\item \textbf{Saving and Loan Associations(S\&L's)}: Traditionally acquired funds through savings and deposits
+	\item \textbf{Consumer Finance Companies}: Acquire funds primarily by selling short term loans(Commercial Paper)
+	\item \textbf{Property and Casualty insurers}: Insure homeowers and businesses agains looses. 
+	\item \textbf{Credit Union}: Organized as cooperatives for people with common interest.
+\end{enumerate}
+\subsection{Financial Market}
+\subsubsection{Money Market}
+\textbf{Money markets} are for short-term instruments
+\begin{itemize}
+	\item Highly liquid, minimal risk
+	\item Use of a temporary surplus of fund by banks or businesses
+\end{itemize}
+\textbf{3 types of Money Market security}
+\begin{enumerate}
+	\item \textbf{Commercial Paper(CP)}: short-term liabilities of prime business firms and finance companies.
+	\item \textbf{Bank Certificates of Deposits(CD's)}: Liabilities of issuing bank, interest bearing to corporations that hold them.
+	\item \textbf{US Treasury bills("T-bills")}: short-term debts of the US government. 
+\end{enumerate}
+\subsubsection{Capital Market}
+\textbf{Capital Market} exchange for long-term securities(one year or more). 
+\begin{itemize}
+	\item Generally used to secure long-term financing for capital investment
+\end{itemize}
+\textbf{ 5 types of Capital Market securities}
+\begin{enumerate}
+	\item \textbf{Stocks}" largest part of capital market and held by private and institutional investors
+	\item \textbf{Mortgage}: held by commercial banks and life insurance companies
+	\item \textbf{Corporate bonds}: held by insurance companies, pension and retirement funds
+	\item \textbf{State\& local government bonds}: primarily held for tax-exapt feature
+	\item \textbf{Government securities}: held by commercial banks, the Fed, individual Americans/foreigners, and dealers
+\end{enumerate}
+
+\section{Interest Rate Measurement and Behavior}
+\subsection{Simple Interest}
+"Simple interest" means receiving a regular interest payment, and taking that interest payment out.\\
+\textbf{Simple interest formular}
+\begin{equation*}
+	FV_t = PV \times (1+tr)
+\end{equation*}
+\subsection{Compound Interest}
+Earning interest on interest\\
+\textbf{Compound interest formular}
+\begin{equation*}
+	FV_t = PV \times (1+r)^t
+\end{equation*}
+Compound interest quickly exceed simple interest, we call this \textbf{exponential} growth. \\
+\subsection{Time value of Money}
+If you take one dollar today, you can invest it somewhere to earn interest. This is called the \textbf{"Time Value of Money"}. "A dollar today is worth more than a dollar tomorrow".\\
+The series of identical, regular payments is an \textbf{annuity}.
+\subsubsection{Discounting}
+Discount is the opposite of compounding.
+\textbf{Discounting formular}
+\begin{align*}
+	PV = FV_t \div (1+r)^t \\
+	Price = \sum_{t=1}^T\frac{\text{Cash flow}_t}{(1+r_t)^t}
+\end{align*}
+\subsection{Fixed Income Securities}
+\subsubsection{Calculate bond interest rate}
+\textbf{3 bond interest rates}
+\begin{enumerate}
+	\item \textbf{Coupon Rate}:
+	\begin{itemize}
+		\item Amount printed on the face of the bond. 
+		\item Return based on \textbf{face value} of the bond, not amount paid for the bond(\textbf{principal}).
+		\item \textbf{"par"}: paid exactly 100\% of face value. 
+	\end{itemize}	
+	\item Current Yield: Yield  on annual interest received based on purchase price of bond.
+	\item \textbf{Yield to Maturity(YTM)}:
+	\begin{itemize}
+		\item Include capital gains between purchase and sales prices of the bond.
+		\item Measure an investor's total return on investment: coupon payments and capital gain or loss
+	\end{itemize}
+\end{enumerate}
+\begin{equation*}
+	P = \frac{C_1}{(1+r)}+\frac{C_2}{(1+r)^2}+\cdots+\frac{C_n+F_n}{(1+r)^n}
+\end{equation*}
+\subsubsection{US Treasuries}
+The price of a US Treasury is shown as \textbf{"handle + tick + plus"}, while
+\begin{itemize}
+	\item The big number or \textbf{handle"} means percent of face value
+	\item The small number of \textbf{"ticks"} which means 32nds of percent of face value
+	\item The \textbf{"+ plus")} means half a tick
+\end{itemize}
+E.g 108-31+ $\implies $ 180+31.5/32\% = 108.984375
+\subsubsection{Convexity}
+The bond price/yield relationship is not a straight line: it has convexity.
+\subsubsection{Zero-coupon bond interest rates}
+\textbf{Zero-coupon bond YTM formula}
+\begin{equation*}
+	P = \frac{\text{Face Value}}{(1+r)^n}
+\end{equation*}
+\begin{itemize}
+	\item \textbf{Long-Term bonds are RISKIER than Short-term bonds}
+	\item \textbf{Real interest rate = Nominal rate - Inflation rate}
+\end{itemize}
+
+
+\section{The term and Risk Structure of Interest Rates}
+\textbf{Term Structure}: Relationship among yields of different maturities of the same type of security.\\
+\textbf{Yield Curve}: A graph of the relationship between yield and maturity.\\
+The basic question: does the curve slope upward("\textbf{positive}"), downward (\textbf{"inverted"}), or is it horizontal?\\
+Yield curves tend to be upward sloping more often, suggesting the \textbf{liquidity premium} is the dominant theory.
+\subsection{Different Theories of the Shape of the Yield Curve}
+Recently issued government bonds(current coupon--"\textbf{on the run}" are more marketable compared to older issues(\textbf{"off the run")}
+
+\subsection{Risk and Tax Structure of Rates}
+\textbf{Credit Risk or Default Risk}
+\begin{itemize}
+	\item Risk on \textbf{municipal bonds"}("munis"), issued by State \& local governments, used to be considered very low.
+	\item \textbf{Standard \& Poor's} and \textbf{Moody's} are companies that measure the credit risk of borrowers. There are other agencies or companies such as: \textbf{Fitch}, \textbf{Dagong}(PRC)
+\end{itemize}
+Two grade of investment:
+\begin{enumerate}
+	\item \textbf{Investment Grade}
+	\item \textbf{Sub-investment Grade}: "High yield" or "Junk"
+\end{enumerate}
+
+\section{The Structure and Performance of Securities Markets}
+The role of market is to provide information to buyers and sellers.
+\subsection{Auction Markets}
+\begin{itemize}
+	\item New T-bills, Notes\& Bonds are auction by the Fed
+	\item \textbf{Primary dealers} and other bidders all submit bids based on yield. 
+	\item All successful competitive bids are filled at the \textbf{stop yield}
+\end{itemize}
+
+\subsection{Dealer Markets}
+Security dealers sell/buy for their own account.
+\begin{itemize}
+	\item Dealers(\textbf{market makers})quote both a price at which they will buy ("\textbf{bid}" price) and a price at which they will sell("\textbf{offer}" or "asked" price)
+\end{itemize}
+
+\subsection{Liquidity}
+\begin{itemize}
+	\item Spread between bid and offer price(the "\textbf{bid/offer spread}")
+\end{itemize}
+
+\subsection{Market Regulation}
+\textbf{Securities and Exchange Commission(SEC)}:Established to precent fraud and promote equitable and fair operations in securities market. Prohibits the use of insider information for personal gain of individuals, brokers and dealers. 
+
+\section{Money and Capital Markets}
+
+\subsection{Bond}
+\subsubsection{US Government Bond Market}
+\textbf{Repurchase Agreements(Repos)} Securities dealers sells government security and agrees to repurchase at a higher price the next ay which reflects the overnight cost of funds. \\
+\textbf{Reverse Repo}: Securities dealer sells the government security to another participant who is lending money, and the other participant is doing "Reverse Repo"
+\begin{itemize}
+	\item Repo market is closely related to Federal Funds Market and the main difference is that a repo agreement is a collateralized loan. Federal Funds rate and rate on repo agreements tend to move together. 
+\end{itemize}
+
+\subsubsection{Fed Open Market Activity}
+\textbf{Fed Open market Operations} 
+The Fed uses the Repo market to ease(tighten) via repo(reverse repo)\\
+Ease by Repo: Fed $\stackrel{\text{Money}}{\longrightarrow}$ Bond market\textbf{(Primary dealers)}$\stackrel{\text{Government Bonds}}{\longrightarrow}$ Fed\\
+Quantitative Easing: Fed $\stackrel{\text{Money}}{\longrightarrow}$ Bond market\textbf{(Primary dealers)}$\stackrel{\text{Mortage, longer-date securities, long-term repo}}{\longrightarrow}$ Fed\\
+Tighten by Repo: Fed $\stackrel{\text{Money}}{\longleftarrow}$ Bond market\textbf{(Primary dealers)}$\stackrel{\text{Government Bonds}}{\longleftarrow}$ Fed\\
+\subsubsection{Bank-Related Securities - Eurodollars}
+\textbf{Eurodollar}:Dollar denominated time deposits held abroad in foreign banks or goreign branches of US banks.
+\begin{itemize}
+	\item \textbf{LIBOR(London Interbank Offered Rate)} overnight rate of borrowing eurodollars and tends to follow money market rates in the US. It is meant to reflect the average interest rate major banks charge each other to borrow. 
+\end{itemize}
+
+\subsubsection{Corporate Securities - Corporate Bonds}
+High-quality corporate bons usually yield more than government bonds and are safer than corporate stocks. Bonds have prior claim before stocks.
+\begin{itemize}
+	\item \textbf{Callable bonds} Issuer has right to pay off the bond before matrity date, higher interest rate.
+	\item \textbf{Convertible bonds} Holders have right to convert to common stock at predetermined price. 
+	\item \textbf{Junk bonds} Very risky, but pay high interest to compensate for risk. 
+\end{itemize}
+\textbf{Corporate bond new issues process}
+\begin{enumerate}
+	\item \textbf{Lead manager}
+	\item \textbf{Due diligence}
+	\item \textbf{Prospectus}
+	\item \textbf{Syndcation}
+	\item \textbf{Roadshow}
+	\item \textbf{Settlements}
+	\item \textbf{Tombstone}
+\end{enumerate}
+
+\subsubsection{Municipal Securities}
+Issued by state and local government. Lowest yield because interest earning are exempt from federal tax.
+\textbf{Two types of municipal bonds}
+\begin{enumerate}
+	\item \textbf{General Obligation Bonds}: backed by general taxing power of the state or local government
+	\item \textbf{Revenue Bonds}: issued to finance a specific project; interest and principal are paid solely out of receipt from the project
+\end{enumerate}
+
+\subsection{Mortgage Securities}
+Borrowing by individuals using real estate as collateral. Most mortgages are insured by a government sponsored enterprise(\textbf{GSE}) minimizing potential default of borowers:
+\begin{enumerate}
+	\item \textbf{Governmental National Mortgage Association(GNMA)}
+	\item \textbf{Federal National Mortgage Association(FNMA)}
+	\item \textbf{Federal Home Loan Mortgage Corporation("Freddic Mac")}
+\end{enumerate}
+To reduce uncertainty and broaden the appeal of mortgages, dealers developed mortgage backed securities or \textbf{Collateralized Mortgage Obligations(CMOs)}. 
+
+\subsection{US Treasuries}
+\begin{itemize}
+	\item The market for US government securities or "Treasuries/Treasurys" is the center of the money and capital markets.
+	\item When the US government runs a deficit, the Treasure Department borrows money by selling government bonds. 
+\end{itemize}
+\subsubsection{3 main types of US Treasuries:}
+\begin{enumerate}
+	\item \textbf{Treasury Bills}: short-term(3,6,12 months), zero-coupon
+	\item \textbf{Treasury Notes}: 2-10 years, interest paid semiannually
+	\item \textbf{Treasury Bonds}: 10 years or longer, up to 30 years, interest paid semiannually
+	\item Separate Trading of Registered Interest \& Principal Securities(STRIPS):can strip the coupon sold as zero coupon bonds, final principal paid as zero coupon bond
+	\item Treasury Inflation Protected Securities(TIPS): three maturities(5, 10 and 20 years), interest paid semiannually, principal grows at the same rate as inflation
+\end{enumerate}
+
+\subsection{Stocks}
+\begin{itemize}
+	\item Less seniority than bank loans in bankruptcy.
+\end{itemize}
+\subsubsection{Types of Stocks:}
+\begin{enumerate}
+	\item \textbf{Common Stock(Ordinary Share)}:give holders right to receive dividends and or vote.
+	\item \textbf{Preferred Stock(Preference Share)}: holders receive fixed dividend. Higher rank in event of liquidation than ordinary shares.
+	\item \textbf{Cumulative preferred stock}: The unpaid dividend must be paid in the following year or whenever the company generates sufficient profits. The arrest paid before paying dividend to ordinary share.
+	\item \textbf{Treasury stock}: repurchased and held by the issuer
+	\item \textbf{Convertible preferred stock}: Preferred stock that can be converted into ordinary shares. (Note: the conversion increase the risk, but when the profitability increase, the ordinary shares may receive higher dividend than the fixed dividend.)
+	\item \textbf{Convertible bond}: bond that can be converted into a fixed number of shares at the option of the holder, on or before a fixed date. 
+\end{enumerate}
+\textbf{Seniority(from high to low)}: (convertible bonds,)Cumulative Preferred Stock, Non-cummulative preferred,Common Stock.
+\subsubsection{Structure of the Stock Market}
+\begin{itemize}
+	\item New York Stock Exchange: most visible part of stock market
+	\item \textbf{Posts}: location where individual stocks are traded
+	\item \textbf{Traders}: receive orders from brokerage houses
+	\item \textbf{Specialists}: individuals who maintain orderly trading for securities in their charge
+\end{itemize}
+
+\subsubsection{Equity Indexes}
+\begin{itemize}
+	\item An index is a hypothetical portfolio of securities representing a particular market or a portion of it.
+	\item An index can be calculated in one of two ways:
+	\begin{enumerate}
+		\item \textbf{Price index}: unweighted arithmetic index; an average of the constituent share prices, E.g \textbf{"DJIA"} Dow Jones Industrial Average
+		\item \textbf{Market cap Index}: weighted index; the value of each component is weighted by the market capitalisation of the company, E.g S\&P 500.(Note: Calculated by price of the stock times its total number of outsharing shares).
+	\end{enumerate}
+\end{itemize}
+Some common equity indexes\\
+\begin{center}
+	\begin{tabular}{|c| c | c |c|}
+	\hline
+	Index & Originated in & Weighting & Changes\\
+	\hline
+	\textbf{S\&P 500}   &  the US  &  market cap  &  occasionally \\
+	\hline
+	\textbf{Nikkei 225}   &  Japan  &  price  &  annually \\
+	\hline
+	\textbf{CAC 40}   &  France  &  market cap  &  quarterly \\
+	\hline
+	\textbf{FTSE 100}   &  the UK  &  market cap  &  quarterly \\
+	\hline
+	\textbf{Hang Seng}   &  Hong Kong  &  market cap  &  occasionally \\
+	\hline
+	\textbf{DAX 30}   &  Germany  &  market cap  &  quarterly \\
+	\hline
+	\end{tabular}
+\end{center}
+
+\subsection{IPO's - Initial Public Offering}
+Note:Company founders raise money from people around or from PE's or VCs'. While the business works on track, more money can be raised through IPO.
+\begin{itemize}
+	\item \textbf{why go public?}: raise money, company founders want to realise profit form their investment, issues new shares to raise money for company growth or new projects.
+	\item The \textbf{IPO} 
+	\begin{itemize}
+		\item result from the privatization of governmental controlling comany
+		\item used to de-merge part of a company 
+	\end{itemize}
+\end{itemize}
+\subsubsection{IPO process}
+\begin{enumerate}
+	\item Lead manager
+	\item Due diligence
+	\item Prospectus
+	\item Syndication
+	\item Roadshow
+	\item Settlements
+	\item Tombstone
+\end{enumerate}
+\subsubsection{Three ways of pricing new equity}
+\begin{enumerate}
+	\item \textbf{Fixed price offer}: risk of overpricing
+	\item \textbf{Auction process}
+	\item \textbf{Modified fixed price process}: most popular technique(Note: possible to gain quick "pop" profit)
+\end{enumerate} 
+
+\subsubsection{League Table}
+\begin{itemize}
+	\item Investment banks compete intensely with each other
+	\item Total volumes of deals are collected together into League Tables
+	\item issuers look at these tables when choosing their led bank and syndicate members
+\end{itemize}
+
+\subsubsection{Secondary Market Trading}
+\textbf{Role of exchanges}: ensure fair and orderly trading, and efficient dissemination of price information for any securities trading on that exchange.\\
+Exchanges are geographical
+\begin{itemize}
+	\item NYSE Euronext
+	\item NASDAQ
+	\item London Stock Exchange
+	\item Hong Kong Stock Exchange
+	\item Tokyo Stock Exchange
+	\item Singapore Stock Exchange
+\end{itemize}
+\textbf{The clear house} becomes the buyer to every seller and the seller to every buyer. It has the structural features that remove the risk of counter party default.\\
+The demand for equities comes from a variety of different sources:
+\begin{enumerate}
+	\item \textbf{Instituional Investors}: pension funds, unit trusts/mutual funds, insurance companies; Generally \textbf{long only} investors(i.e they mainly buy)
+	\item \textbf{Leveraged Accounts}(i.e used borrowed money) hedge funds and investment banks, can go long(Note:think it will to up) or short(Note:think it will go down)(i.e they can both buy and sell)
+	\item \textbf{Retail Investors}(small, e.g individuals) also buy equity "structured products"
+\end{enumerate}
+Securities Financing: \textbf{short selling}: Borrow shares at higher price and sell it, later buy back and return when the price is low; gain profit from the price difference.
+
+\subsection{Corporate Actions \& Ratios}
+\subsubsection{Corporate Actions}
+\begin{itemize}
+	\item Any action by an issuer of investments or by another party in relation to the issuer, affecting an investor's entitlement to investments or benefits relating to those investments
+\end{itemize}
+\textbf{5 examples of corporate actions}
+\begin{enumerate}
+	\item \textbf{Rights Issues}
+	\item \textbf{Share buy-backs} (Note: money recycling, share as bonus)
+	\item \textbf{Takeovers/mergers}
+	\item \textbf{Dividends}(Note: Utility Companies)
+	\item \textbf{Stock splits}(Note: decrease per share price and encourage more people to buy)
+\end{enumerate}
+\subsubsection{Financial Ratio Analysis}
+\textbf{Three equity ratios}:
+\begin{enumerate}
+	\item \textbf{price to Earnings(P/E)} is a measure of the price of a share relative to the company's net income or profit.
+	\item \textbf{Earning Per Share} = $\frac{\text{Net Income}}{\text{Number of Common Shares}}$, calculates the amount of earnings allocated to each common share; it is an important metric for comparing stocks.
+	\item \textbf{Dividend Cover Ratio} = $\frac{\text{Net Profit}}{\text{Dividend}}$, is used to assess a company's ability to pay its dividend.
+\end{enumerate}
+\subsubsection{Technical Analysis}
+\begin{enumerate}
+	\item \textbf{Trend}
+	\item \textbf{Head and Shoulder}
+	\item \textbf{Wedge}
+	\item \textbf{Support}
+	\item \textbf{Resistance}
+\end{enumerate}
+
+\section{Foreign Exchange}
+\begin{itemize}
+	\item The foreign exchange rate between two currencies is determined by supply and demand established in the foreign exchange market consisting of a network of foreign exchange dealers.
+	\item \textbf{The UK has the biggest FX market}
+	\item A \textbf{currency cross pair} (or \textbf{"cross"}) is a pair of currencies that doesn't involve the U.S dollar
+\end{itemize}
+\subsection{What determines FX rates}
+\subsubsection{Five determinants of exchange rates:}
+\begin{enumerate}
+	\item \textbf{Trade \& Balance of Payment}
+	\begin{itemize}
+		\item Trade: import $\implies$ increase in demand for FXs and supply of USD; export $\implies$ increase in supply of foreign exchange and demand of USD
+		\item BOP: A summary of payments to foreigners for imports, and receipts from foreigners for exports
+
+		\item \textbf{BOP Current Account}: international transactions involving trade
+		\item \textbf{BOP Capital Account}: international transactions involving financial assets
+	\end{itemize}
+	\item \textbf{Relative prices}
+	\item \textbf{Productivity}
+	\item \textbf{Tastes}
+	\item \textbf{Investment flows}
+\end{enumerate}
+\subsubsection{FX Sterilization}
+When the central bank intervenes in the bond or money markets to prevent its foreign exchange intervention from affecting the domestic money supply.
+\begin{itemize}
+	\item To \textbf{steriliza} this intervention, Central Banks sell domestirc bonds at the same time as buying the foreign currency
+\end{itemize}
+\subsubsection{Relative Prices: Purchasing Power Parity}
+The basis for \textbf{Purchasing Power Parity} is the law of one piece: assuming that there were no transportation or other transaction costs, then competitive markets will equalize the price of an identical good in two countries when then prices are expressed in the same currency
+
+\subsubsection{FX carry trade}
+Between 2000 and 2007, hedge funds have tried to find relative value in the very high discrepancies in interest rates of various currencies by borrowing low-yielding currencies, and lending high-yielding currencies. This operation is called the currency "\textbf{carry trade}"
+Example case: NZD VS JPY
+
+\subsection{Fixed VS Floating Exchange Rates}
+730 delegates from all 44 Allied nations signed the \textbf{Bretton Woods Agreements} during the first three weeks of July 1944. The core concept behind the Bretton Woods Agreements was a system where exchange rate stability was the primary goal.\\
+Members were required to maintain a parity of their national currencies in terms of a \textbf{reserve currency} and to maintain exchange rates within $\pm 1\%$ of parity by intervening in their foreign exchange markets
+\subsubsection{Exchange rate mechanisms}
+\textbf{Six Exchange Rate Mechanisms}
+\begin{enumerate}
+	\item \textbf{Currency Union} E.g Eurozone
+	\item \textbf{Dollarization} E.g EUR = Monaco, Kosovo
+	\item \textbf{Fixed Exchange Rate of "Peg"} E.g \textbf{Currency Board}: the most efficient form of peg(E.g Hong Kong) The domestic currency can only be issued in an amount equal to the amount of foreign currency in the country's reserve
+	\item \textbf{Crawling Peg} A fixed exchange rate regime which allows for gradual depreciation/appreciation, usually based on some rules or guidelines. E.g PRC
+	\item \textbf{Managed Float or "Dirty Float"} The central banks attempt to influence their countries' exchange rates by buying and selling currencies. E.g Singapore, Canada
+	\item \textbf{Free Floating} E.g USD, EUR, JPY
+\end{enumerate}
+\subsection{International Financial Crises}
+Fixed rate system: A continual balance-of-payment deficit might cause the country run our of international reserves and be forced to \textbf{devalue} which will eliminate the deficit.\\
+Managed float system(practiced by industrialized countries): if the variation excess the predetermined band, the central bank will intervene, and it is likely that the country will be forced to \textbf{devalue}(reduce the FX rate) or \textbf{revalue}(increase the FX rate) its currency to recognize structural changes in local economy
+
+
+\section{Demystifying Derivatives}
+\textbf{Derivatives} a financial instrument/contract that derives its value from some other underlying asset.
+\begin{itemize}
+	\item The underlying asset could be a physical commodity, an interest rate, a company's stock, a stock index, a currency, or virtually any other tradable instrument upon which two parties can agree.
+	\item Derivatives are used to manage risk or express views on future market movement
+\end{itemize}
+\textbf{3 reasons to use derivatives}
+\begin{enumerate}
+	\item \textbf{Hedging} = Reduce risk, derivatives can be used to transfer or remove a risk exposure
+	\item \textbf{Speculating} = Increasing risk, expressing a particular belief about the direction of the market
+	\item \textbf{Arbitrage}: "Arbitrageurs" look for opportunities where the same security(or its equivalent) is priced differently in different location
+\end{enumerate}
+The \textbf{nominal amount} of a derivative relates to the size of the transaction. This is used to determine the magnitude of cash that will be exchanged between the participants.\\
+The \textbf{market value} indicates how much the transaction is currently worth. \\
+Three basic types of derivatives:
+\begin{enumerate}
+	\item A \textbf{forward} or \textbf{futures} contract fixes the price of an asset today for delivery on a single future date. No fees are payable
+	\item A \textbf{swap} contract fixes the price of an asset today for multiple delivery dates in the future. No fees are payable
+	\item an \textbf{option} fixes the price of an asset today for delivery on a single future date but with the ability of the contract buyer to walk away. A fee is payable.
+\end{enumerate}
+\subsection{Futures}
+The price at which the securities will be delivered is determined by bidding and offering that occurs at the location or \textbf{pit} of the exchange.\\
+Once the contract has been agreed upon, the clearing corporation associated with the exchange acts as a middle man in the transaction.
+\begin{itemize}
+	\item Requires the short and long to place a deposit (\textbf{initial margin)} which is a performance bond for both the seller and buyer.
+	\item Requires that gains and losses be settled each day in the "mark-to-market operation", where the loser has to deposit more money as a \textbf{variation margin} 
+\end{itemize}
+\subsection{Swap}
+Two main varieties:
+\begin{enumerate}
+	\item \textbf{Interest rate swaps}
+	\item \textbf{Currency swaps}
+\end{enumerate}
+A swap is a privately negotiated contract between two parties. They agree to exchange one stream of cash-flows for another stream of cash-flows
+\subsection{Options}
+\begin{itemize}
+	\item An option is a conditional derivative instrument(as opposed to the unconditional derivatives like swaps and futures)
+	\item contract between two parties that grants to its owner the right to buy the underlying (call option), or sell it(put option)
+\end{itemize}
+\textbf{Two ways that options are traded}:
+\begin{enumerate}
+	\item \textbf{Listed options}: Traded on an exchange
+	\item \textbf{Over-the-Counter(OTC) options} Traded between 2 counterparties
+\end{enumerate}
+To \textbf{exercise an option} means that the option owner chooses to do the specified trade before or at the expiry date.
+
+\subsubsection{Related definitions}
+\begin{itemize}
+	\item \textbf{premium}: against the initial payment of a sum of money
+	\item \textbf{Call option}: 
+	\begin{itemize}
+		\item \textbf{Buyer}:The buyer of a call options has the right to buy a given quantity of the underlying asset at a predetermined price on or before the expiration date.
+		\item \textbf{Seller}: The seller of the call option is said to \textbf{write} the option and has the obligation to deliver the asset at the agreed price
+	\end{itemize}
+	\item \textbf{Put options}:
+	\begin{itemize}
+		\item Buyer: The buyer of the put option has the right to sell a given quantity of the underlying asset at a predetermined price on or before the expiration date.
+		\item Seller: The seller of the put option has the obligation to buy the asset at the agreed price on or before the expiry date.
+	\end{itemize}
+\end{itemize}
+On expiration date, payoff on expiration of a long call position is either:
+\begin{itemize}
+	\item zero(price below exercise price) or
+	\item stock price minus exercise price(\textbf{intrinsic value})
+\end{itemize}
+There are three different terms for describing where an option is trading in relation to the price of the underlying security
+\begin{enumerate}
+	\item \textbf{At-The-Money(ATM)}: intrinsic value is 0
+	\item \textbf{In-The-Money(ITM)}: intrinsic value is positive
+	\item \textbf{Out-of-The-Money(OTM)}: intrinsic value is negative
+\end{enumerate}
+
+\subsubsection{Option pricing}
+The \textbf{Black-Scholes Model}: in 1973, Fischer Black and Myron Scholes developed a way to price optoins(i.e the premium) using a mathematical model. 
+
+\section{Structured products}
+\textbf{Structured products}: combining an asset and a derivative
+
+
+
+
+
+
+\end{document}

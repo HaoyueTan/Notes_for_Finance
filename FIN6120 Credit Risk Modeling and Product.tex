@@ -1,0 +1,354 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{thrm}
+\newtheorem{thrm}{Theorem}[section]
+\theoremstyle{lma}
+\newtheorem{lma}{Lemma}[section]
+\theoremstyle{ppst}
+\newtheorem{ppst}{Proposition}[section]
+\theoremstyle{crlr}
+\newtheorem{crlr}{Corollary}[section]
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.5}
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+\usepackage{color}  
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true
+    linktoc=all
+    linkcolor=blue
+}
+
+\usepackage{fancyheadings}
+\pagestyle{fancyplain}
+\fancypagestyle{plain}{
+\renewcommand{\headrulewidth}{0.4pt}
+}
+\lhead{\fancyplain{Haoyue(Heather) Tan}{Hthr.}}
+\rhead{\fancyplain{FIN6120}{FIN6120 Final Review}}
+\title{FIN6120 Credit Risk Modeling and Products}
+\author{Heather T.}
+\date{Winter 2022}
+\begin{document}
+
+\maketitle	
+\tableofcontents
+\pagebreak
+
+\section{Asset value modesl}
+\textbf{Notations:}
+\begin{itemize}
+	\item $V_t$: Asset value at time t
+	\item $S_t$: Equity value at time t
+	\item $B_t$: Debt value at time t
+	\item T: Bond maturity
+\end{itemize}
+\subsection{the Merton Model}
+\subsubsection{Geomeric Brownian Motion}:
+\begin{align*}
+	dV_t = \mu V_tdt+\sigma V_tdW_t
+\end{align*}
+where 
+\begin{itemize}
+	\item $\mu$ is the drift or mean of the asset value process
+	\item $\sigma$ is the volatility of the asset value process
+	\item $W_t \sim N(0,t)$
+\end{itemize}
+It can be shown by ito's Lemma that :
+\begin{align*}
+	dlnV_t &= (\mu - 0.5\sigma^2)dt+\sigma d W_t\\
+	lnV_t &\sim N(lnV_0+(\mu - 0.5 \sigma^2)T, \sigma^2T)
+\end{align*}
+\subsubsection{Pricing of Equity - Assumptions}
+\begin{enumerate}
+	\item The risk-free interest is deterministic and equal to $r\geq 0$
+	\item Volatility of the asset value remains constant over the period
+	\item The firm's asset value process $V_t$ is independent of the way the firm is financed, and in particular it is independent of the debt level b
+	\item The asset value $V_t$ can be traded on a frictionless market
+	\item The asset value dynamics are given by the geometric brownian motion
+	\item \textbf{Default only occurs at maturity date T}
+	\item The firm cannot pay our dividends or issues new debt
+\end{enumerate}
+\subsubsection{Implied credit spread}
+\textbf{Credit spread} is the difference between the bond's yield and the yield of a risk-free government bond
+\begin{align*}
+	s = yield - r_f
+\end{align*}
+\textbf{The higher the credit spread, the more likely the firm will default}: higher return implies higher risk
+\subsubsection{Physical default probability}
+\begin{align*}
+	P(V_t\leq B) = \phi (\frac{ln(\frac{B}{V_0}) - (\mu - 0.5\sigma^2)T}{\sigma\sqrt{T}}) = \phi(-d2) = \phi(-DD)
+\end{align*}
+\begin{itemize}
+
+	\item $\sigma \uparrow \implies$ V fluctuate $\implies PD \uparrow$
+	\item higher expected return ($\mu \uparrow$) $\implies PD \downarrow$
+	\item Given fixed debt(B) $V \uparrow \implies PD \downarrow$
+	\item V fixed, $B\uparrow \implies PD\uparrow$
+\end{itemize}
+When T = 1
+\begin{align*}
+	DD &= -(\frac{ln(\frac{B}{V_0})-(\mu - 0.5\sigma^2)T}{\sigma\sqrt{T}})\\
+	&= \frac{ln(\frac{V_0}{B}) + (\mu - 0.5\sigma^2)}{\sigma} \simeq \frac{lnV_0-lnB}{\sigma}\\
+	PD &= \phi (\frac{ln(\frac{B}{V_0}) - (\mu - 0.5\sigma^2)T}{\sigma\sqrt{T}}) = \phi(-DD)\\
+	&= 1-\phi(\frac{ln(\frac{V_0}{B})+(\mu+0.5\sigma^2)}{\sigma\sqrt{T}}) = 1-\phi(DD)
+\end{align*}
+\subsection{Limitations in application}
+\begin{itemize}
+	\item Asset value is not directly observable, but should be estimated
+	\item Moreover, the asset drift $\mu$ and volatility $\sigma$ are to be estimated from the unobserved asset values
+\end{itemize}
+\subsubsection{Potential solutions 1 - market value proxy}
+\begin{enumerate}
+	\item Use the sum of the market value of the firm's equity(daily S) and the book value of the liabilities(quarterly or semi-annually) as a proxy of asset value
+	\item Estimate the asset drift $\mu$ and volatility$\sigma$ from asset returns constructed from historical asset value in a
+	\item Determine DD 
+	\item Obtain PD
+\end{enumerate}
+\subsubsection{Potential solutions 2 - Volatility Restriction}
+\begin{align*}
+	\sigma_s(V_0)S_0 &= \phi(d_1)V_0\sigma\\
+	S_0 &= V_0\phi(d_1)-Be^{-rT}\phi(d_2)
+\end{align*}
+S0, B, r, T can be observed and $\sigma_s$ can be estimated from historical data, thus only V0 and $\sigma$ is missing
+\begin{enumerate}
+	\item Solve non-linear system for $V_0, \sigma$
+	\item Apply the obtained estimated $\sigma $ to a \textbf{chosen historical period}, then obtain the implied asset values using historical data by the second equation
+	\item estimate the asset drift from asset returns constructed form implied asset value in b
+	\item Determine DD and PD
+\end{enumerate}
+\subsubsection{Potential Solution 3 -  KMV Model}
+The public firm \textbf{Expected Default Frequency (EDF) } model is proposed by Moody's Analysis and also known as the KMV model. The default threshold is defined as the sum of the liabilities payable within one-year and half of the long-term debt
+\begin{align*}
+	\tilde{B} &= \text{Short-term liabilities} + 0.5\times \text{Long-term liabilities}\\
+	DD_{KMV} &= \frac{V_0 - \tilde{B}}{V_0\sigma}
+\end{align*}
+\begin{enumerate}
+	\item Define an initial value of asset volatility $\sigma = \frac{S}{S+B}\sigma_s$ where $\sigma_s$ is estimated from historical stock prices
+	\item Use the second equation in Potential solution 2 to infer V, given daily market value of equities in a chosen historical period
+	\item Take the obtained time series V to construct log asset returns for $\mu, \sigma$
+	\item Repeat until $\sigma$ converge
+	\item Used the converge $\sigma$ and corresponding $\mu, V_0$ to determine DD and PD 
+\end{enumerate}
+\subsection{Extensions of merton model}
+\begin{enumerate}
+	\item Default once the firm's asset value falls below threshold and default can occur at anytime before or at the maturity
+	\item allow time varying interest. Asset value and interest are related through a constant correlation defined by $\rho$
+\end{enumerate}
+
+\begin{align*}
+	ln(\frac{V_T}{V_0}) = r = \sqrt{\rho} Y + \sqrt{1-\rho}\epsilon
+\end{align*}
+
+\begin{itemize}
+	\item Y: systematic factor, such as country, industry
+	\item $\epsilon$: firm-specific effect
+	\item Y and $\epsilon$ are independent and $\sim N(0,1)$
+\end{itemize}
+\subsubsection{Conditional default probability}
+\begin{align}
+	p &= P(r\leq c) \rightarrow c = N^{-1}(p)\\
+	P(\sqrt{\rho}Y+\sqrt{1-\rho}\epsilon) &= P(\epsilon \leq \frac{N^{-1}(p) - \sqrt{\rho} Y}{\sqrt{1-\rho}})
+\end{align}
+
+\section{Intensity Model}
+\begin{align*}
+	\tau = inf\{t\geq0: V_t \leq B_t\}
+\end{align*}
+\subsection{Poisson Distribution}
+Define default as the first arrival time $\tau$ of a Poisson process with some constant mean arrival time, called intensity and denoted by $\lambda$
+\begin{align*}
+	\text{No Jump: }& P(N(t)-N(0)=0) = e^{-\lambda t}\\
+	\text{N jump: }& P(N(t)-N(0)=n) = \frac{(\lambda t )^n}{n!}e^{-\lambda t}\\
+	\text{Survival Probability}& P(\tau>t) = exp(-\lambda t)\\
+	\text{Probability of default within t years}& F(t): = P(\tau \leq t) = 1-e^{-\lambda t}\\
+	\text{the expected time of default: }& \frac{1}{\lambda}\\
+	P(\tau \leq t+\Delta t| \tau >t) & = 1-e^{-\lambda\Delta t} \simeq \lambda \Delta t
+\end{align*}
+\subsection{Default intensity over time}
+if $\lambda$ varies through year
+\begin{align*}
+	P(\tau>1)&= e^(-\lambda_1)\\
+	P(\tau>2)&= e^{-\lambda_1}e^{-\lambda_2} = e^{-\lambda_1-\lambda_2}
+\end{align*}
+\subsection{Piecewise Constant}
+\begin{align*}
+	P(\tau>T_n) = e^{-(\lambda_1T_1 + \cdots + \lambda_n(T_n - T_{n-1}))}
+\end{align*}
+\subsection{Intensity Process - CIR case}
+\begin{align*}
+	d\lambda_t = \kappa (\theta - \lambda_t)dt + \sigma \sqrt{\lambda_t}dW_t
+\end{align*}
+\begin{itemize}
+	\item $W_t$ is the standard Brownian motion
+	\item $\theta$ is the long-run mean of $\lambda$
+	\item $\kappa$ is the mean rate of reversion to the long-run mean
+	\item $\sigma$ is a volatility coefficient
+\end{itemize}
+\subsection{A simple approach - credit triangle}
+\begin{align*}
+	\lambda \simeq \frac{S}{1-RR}
+\end{align*}
+
+\section{Credit rating and migration matrix}
+\subsection{Rating Matrix}
+\begin{itemize}
+	\item Each row indicates the probability of each type of transformation 
+	\item Probabilities in each row sums to 1
+\end{itemize}
+
+\subsection{Rating migration as a Markov chain}
+Assume $\{R_t\}$ is a Markov chain, which means given an obligor's rating history, depend only on the previous rating and does not depend on more distant history 
+\begin{align*}
+	P(R_t = k|R_0 = r_0, \cdots, R_{t-1} = j) = P(R_t = k| R_{t-1} = j) 
+\end{align*}
+\subsubsection{Warning on Markov Chain Assumption}
+\begin{itemize}
+	\item Business cycles have an effect on rating transitions. Time-homogeneity get weaker when time get longer
+	\item Thus, agencies tend to seek estimates which are through-the-cycle and hence try to separate changes in conditions with time related factors
+	\item Thus tend to make the rating process deviate from the Markovian case
+\end{itemize}
+
+\subsection{PIT CS TTC}
+\begin{itemize}
+	\item \textbf{Accuracy: } their ratings should provide the most accurate estimate of the corresponding default risk of the underlying asset
+	\item \textbf{Stability: }users prefer that they do not change too frequently
+	\item \textbf{Point in Time(PIT): } use current information when computing the default risk metrics that are mapped into ratings. Credit ratings assigned under the PIT approach should provide the most accurate estimate of future default probabilities and expected losses
+	\item \textbf{Through the Cycle(TTC): } balance the need for accurate default estimate and the desire to achieve rating stability 
+\end{itemize}
+\subsubsection{TTC Application - RWA calculation}
+Since Basel II, banks have been using TTC PDs for credit risk weighted assets(RWA) in the standardize approach\\
+\textbf{Capital Adequacy Ratio = Regulatory Capital/Total RWA}\\
+The higher the rating, the lower the required "Base" risk weight
+\subsubsection{PIT Application - IFRS 9 impairment modeling}
+\textbf{Expected Credit Loss = Probability of D * Lost Given D * Exposure At D}\\
+Debt instruments classified for impairment calculation in IFRS 9, it needs to provide 12-month ECLs, which represent the ECLs that result from default events possible within the 12-month after the reporting date as long as there is no significant deterioration in credit quality
+
+\section{LGD Modeling}
+\subsection{LGD Under Basel}
+\textbf{Effective LGD* = LGD * current value of exposure/ exposure value after mitigation}
+\subsection{RR in Merton Model}
+Conditional on a default event, the recover rate is simply 
+\begin{align*}
+	RR &= V_t/B\\
+	E[V_t/B | V_t < B] &= \frac{V-t}{B}e^{-\mu(T-t)}\frac{\phi(-d_1)}{\phi(-d_2)}
+\end{align*}
+\begin{itemize}
+	\item $\phi(d1)$ refers to the distribution of call option's delta
+	\item call option's delta refers to the change of stock price based on the change of underlying's price
+\end{itemize}
+
+\subsection{Beta Distribution of LGD}
+LGD = 1-RR, and the distribution of LGD follows beta distribution
+\begin{align*}
+	f(x) &= x^{\alpha - 1}(1-x)^{\beta-1}\frac{\Gamma (\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}\\
+	E(x) &= \frac{\alpha}{\alpha+\beta}\\
+	Var(x) &= \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)} 
+\end{align*}
+
+\subsection{Relationship between PD and LGD}
+Moody's: annual corporate default rates are negatively correlated wth annual avg recovery rate. i.e the higher PD, the lower RR
+
+\section{Credit risk measures \& portfolio credit risk}
+
+\begin{align*}
+	L &= 1_D \times LGD \times EAD\\
+	EL &= E(1_D \times LGD \times EAD) = PD \times LGD \times EAD\\
+	UL &= \sqrt{V[1_D \times LGD \times EAD]}
+\end{align*}
+
+\textbf{Unexpected Loss(UL)} is considered as one standard deviation exceeds the historical average loss level. Since EAD is deterministic and LGD independent with the event, thus
+
+\begin{align*}
+	UL = \sqrt{V[1_D \times LGD \times EAD]}\\
+	= EAD\times \sqrt{Var(LGD)\times PD + E(LGD)^2\times PD \times(1-PD)}
+\end{align*}
+
+\subsection{Value at Risk(VaR)}
+$VaR^\alpha = 2\%$ means that a financial asset or portfolio will lose at least 2\% at the confidence level $\alpha$ within a given time horizon. E.g 95\% one-day VaR value is 2\% indicates that 1 in 20 days, there will be a change that you lost at least 2\%
+
+\section{Counterparty Credit risk \& Credit value adjustment}
+Differently from lending risk, counterparty credit risk usually arise from 
+\begin{itemize}
+	\item OTC derivatives, such as FX forwards, Interest Rate Swap(IRS), Credit default swap(CDS)
+	\item Security Financing Transactions, such as Repo, Reverse Repo, Security Borrowing and Lending
+\end{itemize}
+\subsection{Exposure with netting}
+\textbf{Netting Agreement} is a legal binding contract between two counterparties allows aggregation of transactions in the event of default.\\
+\textbf{Bilateral Netting: } two parties combine all their swaps into one master swap, creating one net payment instead of many, between two parties. 
+\subsubsection{Calculation the distribution of credit exposure}
+\begin{enumerate}
+	\item \textbf{Scenario generation:} Further market scenarios are simulated for a fixed set of simulation dates using evolution models of the risk factors
+	\item \textbf{Instrument Valuation: } For each simulation date and for each realization of the underlying market risk factor, instrument valuation is performed for each trade in the counterparty portfolio
+	\item \textbf{Portfolio Aggregation: }For each simulation date and for each realization of the underlying market risk factors, counterparty-level exposure is obtained by applying necessary netting rules. 
+\end{enumerate}
+
+\subsection{Expected exposure and Potential future exposure}
+\begin{itemize}
+	\item \textbf{Expected Exposure(EE): } the average of al exposure values. Note that only positive values give rise to exposures and other values have a zero contribution
+	\item \textbf{Potential Future Exposure(PFE): } a similar measure as VaR expect for the obvious difference that PFE needs to be defined at more than one future date and represents gains(exposure) rather than losses. 
+\end{itemize}
+
+\subsection{Credit Value Adjustment}
+\begin{align*}
+	CVA = PV_{risk-free} - PV
+\end{align*}
+In other words, CVA is the market value of counterparty credit risk
+
+\subsubsection{Key derivatives of CVA}
+\begin{itemize}
+	\item \textbf{Regulation: } CVA Capital Charge is introduced in Basel III in additional to the charge against counterparty credit risk in Basel II. This is one of the most important changes in Basel III
+	\item \textbf{Valuation: } International accounting standard IFRS 13 requires the reporting of credit value adjustment(CVA) and debit value adjustment(DVA) when determining the fair value of OTC derivatives
+	\item \textbf{Hedging: }Big banks created CVA desks to hedge for possible losses due to counterparty default. 
+\end{itemize}
+\subsubsection{Loss variable}
+CVA could be defined as the expected loss arising from a future counterparty default. One can write the discounted loss variable as 
+\begin{align*}
+	L = 1_{\tau \leq T} * LGD * D(0,\tau)*E(\tau)
+\end{align*}
+
+\subsubsection{Wrong-way risk and right-way risk}
+\begin{itemize}
+	\item \textbf{Wrong-way risk: } the risk is wrong way if exposure tend to increase when the counterparty credit quality worsen
+	\item \textbf{Right-way risk: } The risk is right way if exposure tends to decrease when counterparty credit quality worsens. 
+\end{itemize}
+
+\subsubsection{CVA - Discrete form}
+\begin{align*}
+	CVA \simeq LGD\sum_{i=1}^m EE*(t_i)PD(t_{i-1}, t_i)
+\end{align*}
+where
+\begin{itemize}
+	\item EE*(t) is the risk-neutral discounted expected exposure given by $EE*(t) = E^Q[D(0,t)E(t)]$
+	\item D(0,t) is the discount factor between time 0 and t
+	\item $PD(t_{i-1}, t_i)$ is the marginal PD in the interval between $t_{i-1}$ and $t_i$
+\end{itemize}
+
+\subsubsection{CVA approximation}
+Assume that EE is constant over time and equal to its average value. This yields the following approximation based on EPE
+\begin{align*}
+	CVA = \text{credit spread} * EPE
+\end{align*}
+where the CVA is expressed int he same units as the credit spread, which should be for the maturity of the instrument in question. 
+\subsubsection{CVA Strategy}
+\begin{enumerate}
+	\item \textbf{Measure:} A CVA measuring capability is created to calculate and aggregate CVA risks. Accounting and risk managment departments will be the principal users of this function. Tis stage fulfils comliance obligations under accounting and regulatory standards. 
+	\item \textbf{Advise: } In addition to measuring CVA, the bank will advise its trading departments on CVA-related risks. For example, position limits may be set to include CVA, or traders may be given minimum spreads to charge on a counter party by counter party basis. 
+	\item \textbf{Hedge: }At this level the CVA is transferred from the trading desk to a CVA desk, perhaps through a one-time charge to the trading desk. The CVA desk is then responsible for managing the CVA P\&L and , for example, for hedging it through the CDS market. 
+	\item \textbf{Trade: }Here the CVA desk becomes a profit center. The bank is not only hedging its own CVA risks but is also actively taking CVA positions. 
+\end{enumerate}
+
+
+
+\end{document}  
